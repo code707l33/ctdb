@@ -13,6 +13,7 @@ d = json.loads(s)
 PYTHONPATH_ABS = d['PYTHONPATH_ABS']
 REPO_ROOT = d['REPO_ROOT']
 
+
 def dumpdata_from_DB():
     datenow = datetime.now().strftime("%Y%m%d%H%M")
     backup_cmd = f"{PYTHONPATH_ABS} {REPO_ROOT}\\manage.py dumpdatautf8 --output=dumpdata\db.{datenow}.json"
