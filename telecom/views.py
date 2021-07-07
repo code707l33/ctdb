@@ -308,7 +308,7 @@ def prefixlistupdatetask_clone(request, pk):
 # 暫時先塞一個異動的內容
 
 @login_required
-@permission_required('telecom.change_prefixlistupdatetask', raise_exception=True, exception=Http404)    # 改成telecom.previewmailcontent_prefixlistupdatetask 怎麼新增標籤?
+@permission_required('telecom.change_prefixlistupdatetask', raise_exception=True, exception=Http404)    # 如何改成telecom.previewmailcontent_prefixlistupdatetask
 def prefixlistupdatetask_previewmailcontent(request, pk):
     model = PrefixListUpdateTask
     queryset = get_prefixlistupdatetask_queryset(request)
