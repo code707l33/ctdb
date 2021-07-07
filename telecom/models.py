@@ -98,3 +98,6 @@ class PrefixListUpdateTask(models.Model):
 
     def get_clone_url(self):
         return reverse('telecom:prefixlistupdatetask_clone', kwargs={'pk': self.pk})
+
+    def preview_mail_content_url(self):
+        return reverse('telecom:prefixlistupdatetask_previewmailcontent', kwargs={'pk': self.pk})
