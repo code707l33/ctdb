@@ -11,10 +11,16 @@
     <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
       <div class="col">
         <div id="paginatednews">
-          <p style="color: red;font-size: 18px;">置頂消息</p>
-          <p style="color: red;">【網應處各部工程師對技術處以外的聯絡公務(包括其他處級的部門人員及客戶)，請一律採書面資料email溝通，即使是電話溝通後，也需補上email作為留底，以保護工程師及公司權益】</p>
+          {% if is_pinned_news %}
+            <p style="color: red;font-size: 18px;">置頂消息：</p>
+            {% for pinned_news in is_pinned_news %}
+            <p style="color: red;">{{ pinned_news.title }}</p>
+            <p style="color: red;">{{ pinned_news.content }}</p>
+            {% endfor %}
+          {% else %}
+            <div id="blankTop"></div>
+          {% endif %}
         </div>
-        <!-- <div id="blankTop"></div> -->
         <div id="toolbar" class="d-flex">
           <input type="text" id="searchInput" class="form-control shadow-sm{% if not supervise_roles %} mr-auto{% endif %}" placeholder={% translate 'Search..' %}>
           {% if supervise_roles %}
