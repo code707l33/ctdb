@@ -38,6 +38,8 @@ def reminder_list(request):
     queryset = get_reminder_queryset(request)
     paginate_by = 5
     template_name = 'reminder/reminder_list.html'
+    create_by = request.GET.get('created_by')
+    queryset = queryset.filter(created_by=request.user) if create_by else queryset
     page_number = request.GET.get('page', '')
     paginator = Paginator(queryset, paginate_by)
     page_obj = paginator.get_page(page_number)
@@ -47,6 +49,7 @@ def reminder_list(request):
         'page_obj': page_obj,
         'object_list': page_obj if is_paginated else queryset,
         'is_paginated': is_paginated,
+        'create_by': create_by,
     }
     return render(request, template_name, context)
 

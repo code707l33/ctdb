@@ -10,7 +10,16 @@
   <div class="container-fluid max-w-24u">
     <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
       <div class="col">
-        <div id="blankTop"></div>
+        <div id="paginatednews">
+          {% if is_pinned_news %}
+            <p style="color: red;font-size: 18px;">置頂消息：</p>
+            {% for pinned_news in is_pinned_news %}
+            <p style="color: red;">{{ pinned_news.content }}</p>
+            {% endfor %}
+          {% else %}
+            <div id="blankTop"></div>
+          {% endif %}
+        </div>
         <div id="toolbar" class="d-flex">
           <input type="text" id="searchInput" class="form-control shadow-sm{% if not supervise_roles %} mr-auto{% endif %}" placeholder={% translate 'Search..' %}>
           {% if supervise_roles %}

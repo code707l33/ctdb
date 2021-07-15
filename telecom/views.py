@@ -302,3 +302,29 @@ def prefixlistupdatetask_clone(request, pk):
     form = form_class(instance=instance)
     context = {'model': model, 'form': form, 'form_buttons': form_buttons}
     return render(request, template_name, context)
+
+
+# to this step - 20210707, need to write the url function.
+# 暫時先塞一個異動的內容
+
+@login_required
+@permission_required('telecom.change_prefixlistupdatetask', raise_exception=True, exception=Http404)    # 如何改成telecom.previewmailcontent_prefixlistupdatetask
+def prefixlistupdatetask_previewmailcontent(request, pk):
+    model = PrefixListUpdateTask
+    queryset = get_prefixlistupdatetask_queryset(request)
+    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
+    instance.pk = None
+    form_class = PrefixListUpdateTaskModelForm
+    success_url = reverse('telecom:prefixlistupdatetask_list')
+    form_buttons = ['update']
+    template_name = 'telecom/prefixlistupdatetask_form.html'
+    if request.method == 'POST':
+        form = form_class(data=request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect(success_url)
+        context = {'model': model, 'form': form, 'form_buttons': form_buttons}
+        return render(request, template_name, context)
+    form = form_class(instance=instance)
+    context = {'model': model, 'form': form, 'form_buttons': form_buttons}
+    return render(request, template_name, context)

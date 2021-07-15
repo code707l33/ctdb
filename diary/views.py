@@ -9,6 +9,7 @@ from core.utils import today
 
 from .forms import DiaryModelForm, DiaryCommentModelForm
 from .models import Diary
+from news.models import News
 
 
 def get_diary_queryset(request):
@@ -43,12 +44,16 @@ def diary_list(request):
     paginator = Paginator(queryset, paginate_by)
     page_obj = paginator.get_page(page_number)
     is_paginated = page_number.lower() != 'all' and page_obj.has_other_pages()
+
+    is_pinned_news = News.objects.filter(is_pinned=True)
+
     context = {
         'model': model,
         'page_obj': page_obj,
         'object_list': page_obj if is_paginated else queryset,
         'is_paginated': is_paginated,
         'supervise_roles': supervise_roles,
+        'is_pinned_news': is_pinned_news,
     }
     return render(request, template_name, context)
 

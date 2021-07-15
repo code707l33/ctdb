@@ -4,7 +4,8 @@ from .views import (isp_create, isp_delete, isp_list, isp_update,
                     ispgroup_create, ispgroup_delete, ispgroup_list,
                     ispgroup_update, prefixlistupdatetask_clone,
                     prefixlistupdatetask_create, prefixlistupdatetask_delete,
-                    prefixlistupdatetask_list, prefixlistupdatetask_update)
+                    prefixlistupdatetask_list, prefixlistupdatetask_update,
+                    prefixlistupdatetask_previewmailcontent)
 
 app_name = 'telecom'
 
@@ -22,4 +23,5 @@ urlpatterns = [
     path('prefixlistupdatetasks/<int:pk>/change/', prefixlistupdatetask_update, name='prefixlistupdatetask_update'),
     path('prefixlistupdatetasks/<int:pk>/delete/', prefixlistupdatetask_delete, name='prefixlistupdatetask_delete'),
     path('prefixlistupdatetasks/<int:pk>/clone/', prefixlistupdatetask_clone, name='prefixlistupdatetask_clone'),
+    path('prefixlistupdatetasks/<int:pk>/previewmailcontent/', prefixlistupdatetask_previewmailcontent, name='prefixlistupdatetask_previewmailcontent'),
 ]
