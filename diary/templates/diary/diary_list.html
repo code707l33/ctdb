@@ -14,7 +14,6 @@
           {% if is_pinned_news %}
             <p style="color: red;font-size: 18px;">置頂消息：</p>
             {% for pinned_news in is_pinned_news %}
-            <p style="color: red;">{{ pinned_news.title }}</p>
             <p style="color: red;">{{ pinned_news.content }}</p>
             {% endfor %}
           {% else %}
