@@ -304,11 +304,9 @@ def prefixlistupdatetask_clone(request, pk):
     return render(request, template_name, context)
 
 
-# to this step - 20210707, need to write the url function.
-# 暫時先塞一個異動的內容
-
+# TODO:mail_content.html edit
 @login_required
-@permission_required('telecom.change_prefixlistupdatetask', raise_exception=True, exception=Http404)    # 如何改成telecom.previewmailcontent_prefixlistupdatetask
+@permission_required('telecom.change_prefixlistupdatetask', raise_exception=True, exception=Http404)
 def prefixlistupdatetask_previewmailcontent(request, pk):
     model = PrefixListUpdateTask
     queryset = get_prefixlistupdatetask_queryset(request)
