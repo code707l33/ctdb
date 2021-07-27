@@ -314,17 +314,8 @@ def prefixlistupdatetask_previewmailcontent(request, pk):
     queryset = get_prefixlistupdatetask_queryset(request)
     instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
     instance.pk = None
-    form_class = PrefixListUpdateTaskModelForm
-    success_url = reverse('telecom:prefixlistupdatetask_list')
-    form_buttons = ['update']
-    template_name = 'telecom/prefixlistupdatetask_form.html'
-    if request.method == 'POST':
-        form = form_class(data=request.POST, instance=instance)
-        if form.is_valid():
-            form.save()
-            return redirect(success_url)
-        context = {'model': model, 'form': form, 'form_buttons': form_buttons}
-        return render(request, template_name, context)
-    form = form_class(instance=instance)
-    context = {'model': model, 'form': form, 'form_buttons': form_buttons}
+    task = model.objects.get(pk=pk)
+    isps = task.isps.get()
+    template_name = 'telecom/mail_content.html'    # mail_content.html
+    context = {'model': model, 'task': task, 'isps': isps}
     return render(request, template_name, context)
