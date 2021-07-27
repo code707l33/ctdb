@@ -28,9 +28,14 @@
 
 <body>
     <div id="mail_content" style="font-size: 16px;">
+        <p>收件人:{{ isps.to }}</p>
         <p>{{ isps.name }} 您好,</p>
         <p>&nbsp;&nbsp;這裡是"是方電訊"(AS 17408)，我們有 {{ task.update_type }} 的需求，麻煩您協助設定並請回覆告知，謝謝您</p>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;更新項目如下：</p>
+        <ul style="color: royalblue;">
+            <li>Oirgin AS ： {{ task.origin_as }}</li>
+            <li>AS Path ： {{ task.as_path }}</li>
+            <li>Prefix List ： {{ task.prefix_list }}</li>
+        </ul>
         
     </div>
 </body>

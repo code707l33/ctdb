@@ -1020,7 +1020,7 @@ msgstr "中文名稱"
 
 #: .\telecom\templates\telecom\prefixlistupdatetask_action_dropdown.html:19
 msgid "Preview Email Content"
-msgstr "預覽郵件內容"
+msgstr "郵件預覽"
 
 #: .\user\serializers.py:53
 msgid "Unable to authenticate with provided credentials"
