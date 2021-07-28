@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-27 14:50+0800\n"
+"POT-Creation-Date: 2021-07-28 13:49+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -148,7 +148,7 @@ msgstr "使用者"
 msgid "Phone number"
 msgstr "電話號碼"
 
-#: .\accounts\models.py:45 .\core\templates\standard_nav.html:131
+#: .\accounts\models.py:45 .\core\templates\standard_nav.html:135
 msgid "Profile"
 msgstr "個人檔案"
 
@@ -204,7 +204,7 @@ msgstr "© 2020 保留所有權利。"
 #: .\accounts\templates\registration\signup.html:20
 #: .\accounts\templates\registration\signup_with_account_and_password.html:13
 #: .\accounts\templates\registration\signup_with_email.html:13
-#: .\core\templates\standard_nav.html:157
+#: .\core\templates\standard_nav.html:161
 msgid "Login"
 msgstr "登入"
 
@@ -260,7 +260,7 @@ msgid "Back to the homepage."
 msgstr "返回首頁"
 
 #: .\accounts\templates\registration\password_change_form.html:11
-#: .\core\templates\standard_nav.html:132
+#: .\core\templates\standard_nav.html:136
 msgid "Password change"
 msgstr "密碼變更"
 
@@ -307,8 +307,8 @@ msgid "I didn't recieve it."
 msgstr "我沒有收到"
 
 #: .\accounts\templates\registration\password_reset_form.html:11
-#: .\core\templates\standard_nav.html:134
-#: .\core\templates\standard_nav.html:160
+#: .\core\templates\standard_nav.html:138
+#: .\core\templates\standard_nav.html:164
 msgid "Password reset"
 msgstr "密碼重置"
 
@@ -321,7 +321,7 @@ msgstr "重置"
 #: .\accounts\templates\registration\signup_with_account_and_password.html:41
 #: .\accounts\templates\registration\signup_with_email.html:11
 #: .\accounts\templates\registration\signup_with_email.html:44
-#: .\core\templates\standard_nav.html:158
+#: .\core\templates\standard_nav.html:162
 msgid "Sign up"
 msgstr "註冊"
 
@@ -340,7 +340,9 @@ msgid "Already have an account?"
 msgstr "已經有帳號了嗎？"
 
 #: .\archive\models.py:18 .\core\templates\standard_nav.html:94
-#: .\core\templates\standard_nav.html:98 .\core\templates\standard_nav.html:102
+#: .\core\templates\standard_nav.html:98 .\core\templates\standard_nav.html:101
+#: .\core\templates\standard_nav.html:104
+#: .\core\templates\standard_nav.html:107
 msgid "Archive"
 msgstr "檔案"
 
@@ -384,7 +386,7 @@ msgstr "搜尋.."
 #: .\core\templates\standard_form_with_file.html:65
 #: .\core\templates\standard_nav.html:33 .\core\templates\standard_nav.html:51
 #: .\core\templates\standard_nav.html:67 .\core\templates\standard_nav.html:75
-#: .\core\templates\standard_nav.html:85 .\core\templates\standard_nav.html:103
+#: .\core\templates\standard_nav.html:85 .\core\templates\standard_nav.html:101
 #: .\diary\templates\diary\diary_list.html:40
 #: .\log\templates\log\diary_log_list.html:18
 #: .\news\templates\news\news_list.html:17
@@ -524,15 +526,15 @@ msgid "News"
 msgstr "最新消息"
 
 #: .\core\templates\standard_nav.html:26 .\core\templates\standard_nav.html:30
-#: .\core\templates\standard_nav.html:33 .\core\templates\standard_nav.html:116
+#: .\core\templates\standard_nav.html:33 .\core\templates\standard_nav.html:120
 #: .\diary\models.py:28
 msgid "Diary"
 msgstr "日誌"
 
 #: .\core\templates\standard_nav.html:30 .\core\templates\standard_nav.html:47
 #: .\core\templates\standard_nav.html:64 .\core\templates\standard_nav.html:71
-#: .\core\templates\standard_nav.html:80 .\core\templates\standard_nav.html:99
-#: .\core\templates\standard_nav.html:117
+#: .\core\templates\standard_nav.html:80 .\core\templates\standard_nav.html:98
+#: .\core\templates\standard_nav.html:121
 msgid "List"
 msgstr "列表"
 
@@ -560,20 +562,28 @@ msgstr "ISP 群組"
 msgid "Prefix-list update task"
 msgstr "Prefix-list 更新任務"
 
-#: .\core\templates\standard_nav.html:112
-#: .\core\templates\standard_nav.html:116 .\log\models.py:18
+#: .\core\templates\standard_nav.html:104
+msgid "journals List"
+msgstr "月刊列表"
+
+#: .\core\templates\standard_nav.html:107
+msgid "journals Add"
+msgstr "新增月刊"
+
+#: .\core\templates\standard_nav.html:116
+#: .\core\templates\standard_nav.html:120 .\log\models.py:18
 msgid "Log"
 msgstr ""
 
-#: .\core\templates\standard_nav.html:130
+#: .\core\templates\standard_nav.html:134
 msgid "Logout"
 msgstr "登出"
 
-#: .\core\templates\standard_nav.html:146
+#: .\core\templates\standard_nav.html:150
 msgid "No available roles"
 msgstr "沒有可用的角色"
 
-#: .\core\templates\standard_nav.html:154
+#: .\core\templates\standard_nav.html:158
 msgid "Guest"
 msgstr "訪客"
 
