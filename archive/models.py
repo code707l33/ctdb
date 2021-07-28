@@ -11,6 +11,7 @@ uuid_file_system_storage = UUIDFileSystemStorage()
 class Archive(models.Model):
     archive = models.FileField(storage=uuid_file_system_storage, upload_to='archive')
     name = models.CharField(max_length=255)
+    type = models.CharField(max_length=255)
     created_by = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta:
@@ -29,3 +30,6 @@ class Archive(models.Model):
 
     def get_delete_url(self):
         return reverse('archive:archive_delete', kwargs={'pk': self.pk})
+
+    def get_create_journals_url(self):
+        return reverse('archive:journals_create')
