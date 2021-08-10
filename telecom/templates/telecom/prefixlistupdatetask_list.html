@@ -29,7 +29,8 @@
                 <th style="width: 1px;">{% translate 'ISP groups' %}</th>
                 <th style="width: 1px;">{% translate 'Origin AS' %}</th>
                 <th style="width: 1px;">{% translate 'AS path' %}</th>
-                <th style="width: 100%;">{% translate 'Prefix-list' %}</th>
+                <th style="width: 50%;">{% translate 'IPv4-Prefix-list' %}</th>
+                <th style="width: 50%;">{% translate 'IPv6-Prefix-list' %}</th>
               </tr>
             </thead>
             <tbody>
@@ -44,7 +45,9 @@
                 <td class="text-nowrap">{{ obj.ispgroups.all|join_with_newline:','|linebreaks }}</td>
                 <td class="text-nowrap">{{ obj.origin_as }}</td>
                 <td class="text-nowrap">{{ obj.as_path }}</td>
-                <td class="text-nowrap">{{ obj.prefix_list|linebreaks }}</td>
+                <td class="text-nowrap">{{ obj.ipv4_prefix_list|linebreaks }}</td>
+                <td class="text-nowrap">{{ obj.ipv6_prefix_list|linebreaks }}</td>
+
               </tr>
               {% empty %}
               <tr>
