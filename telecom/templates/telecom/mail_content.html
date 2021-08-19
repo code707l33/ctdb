@@ -36,11 +36,15 @@
             <li>AS Path ： {{ task.as_path }}</li>
             <li>Prefix List ： </li>
                 <ul class="ip_content">
-                {% if task.ipv4_prefix_list %}
-                <li>{{ task.ipv4_prefix_list }}</li>
+                {% if ipv4_contents %}
+                {% for ipv4_content in ipv4_contents %}
+                <li>{{ ipv4_content }}</li>
+                {% endfor %}
                 {% endif %}
-                {% if task.ipv6_prefix_list %}
-                <li>{{ task.ipv6_prefix_list }}</li>
+                {% if ipv6_contents %}
+                {% for ipv6_content in ipv6_contents %}
+                <li>{{ ipv6_content }}</li>
+                {% endfor %}
                 {% endif %}
                 </ul>
         </ul>

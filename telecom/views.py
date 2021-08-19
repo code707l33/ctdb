@@ -313,15 +313,20 @@ def prefixlistupdatetask_previewmailcontent(request, pk):
     instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
     instance.pk = None
     task = model.objects.get(pk=pk)
-    if task.ipv4_prefix_list:
+    ipv4_contents = task.ipv4_prefix_list.split(',')
+    ipv6_contents = task.ipv6_prefix_list.split(',')
+    if ipv4_contents:
         ip_type = 'ipv4'
-    elif task.ipv6_prefix_list:
+    elif ipv6_contents:
         ip_type = 'ipv6'
     else:
         ip_type = ""
     if task.ipv4_prefix_list and task.ipv6_prefix_list:
         ip_type = 'ipv4 & ipv6'
+    print(ipv4_contents)
+    print(ipv6_contents)
+
     isps = task.isps.get()
     template_name = 'telecom/mail_content.html'    # mail_content.html
-    context = {'model': model, 'task': task, 'isps': isps, 'ip_type': ip_type}
+    context = {'model': model, 'task': task, 'isps': isps, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}
     return render(request, template_name, context)
