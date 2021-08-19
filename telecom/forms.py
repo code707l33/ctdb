@@ -79,6 +79,7 @@ class PrefixListUpdateTaskModelForm(forms.ModelForm):
                 'rows': 6
             }
         ),
+        required=False
     )
     ipv6_prefix_list = forms.CharField(
         label=_('IPv6-Prefix-list'),
@@ -93,6 +94,7 @@ class PrefixListUpdateTaskModelForm(forms.ModelForm):
                 'rows': 6
             }
         ),
+        required=False
     )
     related_ticket = forms.CharField(
         label=_('Related ticket'),
