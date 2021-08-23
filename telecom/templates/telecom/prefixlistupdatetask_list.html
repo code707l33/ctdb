@@ -29,8 +29,10 @@
                 <th style="width: 1px;">{% translate 'ISP groups' %}</th>
                 <th style="width: 1px;">{% translate 'Origin AS' %}</th>
                 <th style="width: 1px;">{% translate 'AS path' %}</th>
-                <th style="width: 50%;">{% translate 'IPv4-Prefix-list' %}</th>
-                <th style="width: 50%;">{% translate 'IPv6-Prefix-list' %}</th>
+                <th style="width: 30%;">{% translate 'IPv4-Prefix-list' %}</th>
+                <th style="width: 30%;">{% translate 'IPv6-Prefix-list' %}</th>
+                <th style="width: 50%;">{% translate 'Mail sended time' %}</th>
+
               </tr>
             </thead>
             <tbody>
@@ -47,7 +49,7 @@
                 <td class="text-nowrap">{{ obj.as_path }}</td>
                 <td class="text-nowrap">{{ obj.ipv4_prefix_list|linebreaks }}</td>
                 <td class="text-nowrap">{{ obj.ipv6_prefix_list|linebreaks }}</td>
-
+                <td class="text-nowrap">{{ obj.meil_sended_time|linebreaks }}</td>
               </tr>
               {% empty %}
               <tr>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        .max-w-20 {
+            max-width: 1800px;
+        }
+
+        .w-16 {
+            width: 1800px;
+        }
+
+        .no-wrap {
+            white-space: nowrap;
+        }
+
+        .table-condensed {
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mail_content" style="font-size: 16px;">
+        <p>主旨:[是方電訊] -- Please add new BGP entry for our customer - {{ task.origin_as }}</p>
+        <p>收件人:{{ isps.to }}</p>
+        <p>{{ isps.name }} 您好,</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;這裡是"是方電訊"(AS 17408)，我們有 {{ task.update_type }} {{ ip_type }} 的需求，麻煩您協助設定並請回覆告知，謝謝您</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;更新標的:{{ isps.customer_no }}</p>
+        <ul style="color: royalblue;list-style-type:none;">
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oirgin AS ： {{ task.origin_as }}</li>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AS Path ： {{ task.as_path }}</li>
+            {% if task.ipv4_prefix_list %}
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IP Prefix ： </li>
+            <ul class="ip_content" style="list-style-type:none;">
+                {% for ipv4_content in ipv4_contents %}
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ ipv4_content }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% if task.ipv6_prefix_list %}
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IPv6 Prefix ： </li>
+            <ul class="ip_content" style="list-style-type:none;">
+                {% for ipv6_content in ipv6_contents %}
+                <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ ipv6_content }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </ul>
+    </div>
+</body>
+
+</html>
