@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        .max-w-20 {
+            max-width: 1800px;
+        }
+
+        .w-16 {
+            width: 1800px;
+        }
+
+        .no-wrap {
+            white-space: nowrap;
+        }
+
+        .table-condensed {
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mail_content" style="font-size: 16px;">
+        <p>收件人:{{ isps.to }}</p>
+        <p>{{ isps.name }} 您好,</p>
+        <p>&nbsp;&nbsp;這裡是"是方電訊"(AS 17408)，我們有 {{ task.update_type }} {{ ip_type }} 的需求，麻煩您協助設定並請回覆告知，謝謝您</p>
+        <ul style="color: royalblue;">
+            <li>Oirgin AS ： {{ task.origin_as }}</li>
+            <li>AS Path ： {{ task.as_path }}</li>
+            <li>Prefix List ： </li>
+                <ul class="ip_content">
+                {% if task.ipv4_prefix_list %}
+                {% for ipv4_content in ipv4_contents %}
+                <li>{{ ipv4_content }}</li>
+                {% endfor %}
+                {% endif %}
+                {% if task.ipv6_prefix_list %}
+                {% for ipv6_content in ipv6_contents %}
+                <li>{{ ipv6_content }}</li>
+                {% endfor %}
+                {% endif %}
+                </ul>
+        </ul>
+        
+    </div>
+</body>
+
+</html>

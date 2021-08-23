@@ -1,4 +1,4 @@
-{% extends 'telecom/base.html' %}
+{% extends 'archive/base.html' %}
 {% load static i18n widget_tweaks custom_templatetags %}
 
 {% block extracss %}
@@ -15,7 +15,7 @@
           <input type="text" id="searchInput" class="form-control shadow-sm" placeholder={% translate 'Search..' %}>
           {% name model|attr:'_meta'|get_perm_name:'add' as perm_name %}
           {% if user|has_perm:perm_name %}
-          <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_url }}">{% translate 'Add' %}</a>
+          <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_journals_url }}">{% translate 'Add' %}</a>
           {% endif %}
         </div>
         <div class="table-responsive">
@@ -24,30 +24,15 @@
               <tr>
                 <th style="width: 1px;">{% translate 'Action' %}</th>
                 <th style="width: 1px;">{% translate 'Created by' %}</th>
-                <th style="width: 1px;">{% translate 'Update type' %}</th>
-                <th style="width: 1px;">{% translate 'ISPs' %}</th>
-                <th style="width: 1px;">{% translate 'ISP groups' %}</th>
-                <th style="width: 1px;">{% translate 'Origin AS' %}</th>
-                <th style="width: 1px;">{% translate 'AS path' %}</th>
-                <th style="width: 50%;">{% translate 'IPv4-Prefix-list' %}</th>
-                <th style="width: 50%;">{% translate 'IPv6-Prefix-list' %}</th>
+                <th style="width: 100%">{% translate 'Name' %}</th>
               </tr>
             </thead>
             <tbody>
               {% for obj in object_list %}
               <tr>
-                <td class="text-nowrap">
-                  {% include 'telecom/prefixlistupdatetask_action_dropdown.html' %}
-                </td>
+                <td class="text-nowrap">{% include 'standard_action_dropdown.html' %}</td>
                 <td class="text-nowrap">{{ obj.created_by }}</td>
-                <td class="text-nowrap">{{ obj.get_update_type_display }}</td>
-                <td class="text-nowrap">{{ obj.isps.all|join_with_newline:','|linebreaks }}</td>
-                <td class="text-nowrap">{{ obj.ispgroups.all|join_with_newline:','|linebreaks }}</td>
-                <td class="text-nowrap">{{ obj.origin_as }}</td>
-                <td class="text-nowrap">{{ obj.as_path }}</td>
-                <td class="text-nowrap">{{ obj.ipv4_prefix_list|linebreaks }}</td>
-                <td class="text-nowrap">{{ obj.ipv6_prefix_list|linebreaks }}</td>
-
+                <td class="text-nowrap"><a href="{{ obj.archive.url }}">{{ obj.name }}</a></td>
               </tr>
               {% empty %}
               <tr>

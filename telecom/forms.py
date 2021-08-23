@@ -66,8 +66,8 @@ class IspGroupModelForm(forms.ModelForm):
 
 
 class PrefixListUpdateTaskModelForm(forms.ModelForm):
-    prefix_list = forms.CharField(
-        label=_('Prefix-list'),
+    ipv4_prefix_list = forms.CharField(
+        label=_('IPv4-Prefix-list'),
         widget=forms.Textarea(
             attrs={
                 'placeholder': _(
@@ -76,9 +76,25 @@ class PrefixListUpdateTaskModelForm(forms.ModelForm):
                     '100.100.100.100/24,\n'
                     '100.100.200.100/22 le 24,\n'
                 ),
-                'rows': 12
+                'rows': 6
             }
         ),
+        required=False
+    )
+    ipv6_prefix_list = forms.CharField(
+        label=_('IPv6-Prefix-list'),
+        widget=forms.Textarea(
+            attrs={
+                'placeholder': _(
+                    'Please enter a prefix-list. For example:\n'
+                    '\n'
+                    '2404:63C0::/32 le 64\n'
+
+                ),
+                'rows': 6
+            }
+        ),
+        required=False
     )
     related_ticket = forms.CharField(
         label=_('Related ticket'),

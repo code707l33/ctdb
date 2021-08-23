@@ -304,27 +304,21 @@ def prefixlistupdatetask_clone(request, pk):
     return render(request, template_name, context)
 
 
-# to this step - 20210707, need to write the url function.
-# 暫時先塞一個異動的內容
-
+# TODO:mail_content.html edit
 @login_required
-@permission_required('telecom.change_prefixlistupdatetask', raise_exception=True, exception=Http404)    # 如何改成telecom.previewmailcontent_prefixlistupdatetask
+@permission_required('telecom.change_prefixlistupdatetask', raise_exception=True, exception=Http404)
 def prefixlistupdatetask_previewmailcontent(request, pk):
     model = PrefixListUpdateTask
     queryset = get_prefixlistupdatetask_queryset(request)
     instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
     instance.pk = None
-    form_class = PrefixListUpdateTaskModelForm
-    success_url = reverse('telecom:prefixlistupdatetask_list')
-    form_buttons = ['update']
-    template_name = 'telecom/prefixlistupdatetask_form.html'
-    if request.method == 'POST':
-        form = form_class(data=request.POST, instance=instance)
-        if form.is_valid():
-            form.save()
-            return redirect(success_url)
-        context = {'model': model, 'form': form, 'form_buttons': form_buttons}
-        return render(request, template_name, context)
-    form = form_class(instance=instance)
-    context = {'model': model, 'form': form, 'form_buttons': form_buttons}
+    task = model.objects.get(pk=pk)
+    ip_type = 'ipv4' if task.ipv4_prefix_list else 'ipv6'
+    if task.ipv4_prefix_list and task.ipv6_prefix_list:
+        ip_type = 'ipv4 & ipv6'
+    ipv4_contents = task.ipv4_prefix_list.split(',')
+    ipv6_contents = task.ipv6_prefix_list.split(',')
+    isps = task.isps.get()
+    template_name = 'telecom/mail_content.html'    # mail_content.html
+    context = {'model': model, 'task': task, 'isps': isps, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}
     return render(request, template_name, context)
