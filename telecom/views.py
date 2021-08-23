@@ -325,6 +325,7 @@ def prefixlistupdatetask_previewmailcontent(request, pk):
 
 
 # TODO:Send task mail process
+# Need to makemigrations for mail_sended_time
 @login_required
 @permission_required('telecom.change_prefixlistupdatetask', raise_exception=True, exception=Http404)
 def prefixlistupdatetask_sendtaskmail(request, pk):
