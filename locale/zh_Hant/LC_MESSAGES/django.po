@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-23 14:43+0800\n"
+"POT-Creation-Date: 2021-08-24 11:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -511,7 +511,7 @@ msgstr "刪除"
 #: .\core\templates\standard_action_dropdown.html:17
 #: .\diary\templates\diary\diary_action_dropdown.html:23
 #: .\reminder\templates\reminder\reminder_action_dropdown.html:23
-#: .\telecom\templates\telecom\prefixlistupdatetask_action_dropdown.html:21
+#: .\telecom\templates\telecom\prefixlistupdatetask_action_dropdown.html:24
 msgid "No available options"
 msgstr "沒有可用的選項"
 
@@ -909,6 +909,7 @@ msgstr ""
 
 #: .\reminder\templates\reminder\reminder_action_dropdown.html:19
 #: .\reminder\templates\reminder\reminder_confirm_send_email.html:18
+#: .\telecom\templates\telecom\prefixlistupdatetask_action_dropdown.html:22
 msgid "Send Email"
 msgstr "寄送 Email"
 
@@ -1072,6 +1073,11 @@ msgstr "郵件預覽"
 #: .\user\serializers.py:53
 msgid "Unable to authenticate with provided credentials"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Send Email"
+#~ msgid "Send task Email"
+#~ msgstr "寄送 Email"
 
 #~ msgid "Boss"
 #~ msgstr "主管"
