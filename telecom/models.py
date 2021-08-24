@@ -103,3 +103,6 @@ class PrefixListUpdateTask(models.Model):
 
     def preview_mail_content_url(self):
         return reverse('telecom:prefixlistupdatetask_previewmailcontent', kwargs={'pk': self.pk})
+
+    def send_task_mail_url(self):
+        return reverse('telecom:prefixlistupdatetask_sendtaskmail', kwargs={'pk': self.pk})

@@ -9,6 +9,8 @@ from core.decorators import permission_required
 from .forms import (IspGroupModelForm, IspModelForm,
                     PrefixListUpdateTaskModelForm)
 from .models import Isp, IspGroup, PrefixListUpdateTask
+from datetime import datetime
+time_now = datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S')
 
 
 def get_telecom_model_queryset(request, model):
@@ -317,7 +319,6 @@ def prefixlistupdatetask_previewmailcontent(request, pk):
         ip_type = 'ipv4 & ipv6'
     ipv4_contents = task.ipv4_prefix_list.split(',\r\n')
     ipv6_contents = task.ipv6_prefix_list.split(',\r\n')
-    print(ipv6_contents)
     isps = task.isps.get()
     template_name = 'telecom/mail_content_preview.html'
     context = {'model': model, 'task': task, 'isps': isps, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}
@@ -329,18 +330,12 @@ def prefixlistupdatetask_previewmailcontent(request, pk):
 @login_required
 @permission_required('telecom.change_prefixlistupdatetask', raise_exception=True, exception=Http404)
 def prefixlistupdatetask_sendtaskmail(request, pk):
-    model = PrefixListUpdateTask
     queryset = get_prefixlistupdatetask_queryset(request)
     instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
-    instance.pk = None
-    task = model.objects.get(pk=pk)
-    ip_type = 'ipv4' if task.ipv4_prefix_list else 'ipv6'
-    if task.ipv4_prefix_list and task.ipv6_prefix_list:
-        ip_type = 'ipv4 & ipv6'
-    ipv4_contents = task.ipv4_prefix_list.split(',\r\n')
-    ipv6_contents = task.ipv6_prefix_list.split(',\r\n')
-    print(ipv6_contents)
-    isps = task.isps.get()
-    template_name = 'telecom/mail_content_preview.html'
-    context = {'model': model, 'task': task, 'isps': isps, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}
-    return render(request, template_name, context)
+    instance.meil_sended_time = time_now
+    task_list_url = reverse('telecom:prefixlistupdatetask_list')
+    form_class = PrefixListUpdateTaskModelForm
+    form = form_class(data=request.POST, instance=instance)
+    if form.is_valid:
+        form.save()
+    return redirect(task_list_url)
