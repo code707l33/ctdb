@@ -3,12 +3,14 @@ from django.core.paginator import Paginator
 from django.http.response import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.template.loader import render_to_string
 
 from core.decorators import permission_required
 
 from .forms import (IspGroupModelForm, IspModelForm,
                     PrefixListUpdateTaskModelForm)
 from .models import Isp, IspGroup, PrefixListUpdateTask
+from .sendtaskmail import handle_task_mail
 from datetime import datetime
 
 
@@ -329,8 +331,20 @@ def prefixlistupdatetask_previewmailcontent(request, pk):
 @login_required
 @permission_required('telecom.change_prefixlistupdatetask', raise_exception=True, exception=Http404)
 def prefixlistupdatetask_sendtaskmail(request, pk):
+    model = PrefixListUpdateTask
+    task = model.objects.get(pk=pk)
+    ip_type = 'ipv4' if task.ipv4_prefix_list else 'ipv6'
+    if task.ipv4_prefix_list and task.ipv6_prefix_list:
+        ip_type = 'ipv4 & ipv6'
+    ipv4_contents = task.ipv4_prefix_list.split(',\r\n')
+    ipv6_contents = task.ipv6_prefix_list.split(',\r\n')
+    isps = task.isps.get()
     queryset = get_prefixlistupdatetask_queryset(request)
     instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
+    template_name = 'telecom/mail_content.html'
+    context = {'model': model, 'task': task, 'isps': isps, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}
+    mail_content = render_to_string(template_name, context)
+    handle_task_mail(isps, task, mail_content)
     time_now = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
     instance.meil_sended_time = time_now
     instance.save()
