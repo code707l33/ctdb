@@ -12,7 +12,6 @@ from .models import Isp, IspGroup, PrefixListUpdateTask
 from datetime import datetime
 
 
-
 def get_telecom_model_queryset(request, model):
     """
     The queryset of models `Isp`, `IspGroup`, `PrefixListUpdateTask` with
@@ -326,7 +325,7 @@ def prefixlistupdatetask_previewmailcontent(request, pk):
 
 
 # TODO:Send task mail process
-# Send Email Process
+# Send Email Process develop
 @login_required
 @permission_required('telecom.change_prefixlistupdatetask', raise_exception=True, exception=Http404)
 def prefixlistupdatetask_sendtaskmail(request, pk):
