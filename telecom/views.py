@@ -10,7 +10,7 @@ from .forms import (IspGroupModelForm, IspModelForm,
                     PrefixListUpdateTaskModelForm)
 from .models import Isp, IspGroup, PrefixListUpdateTask
 from datetime import datetime
-time_now = datetime.strftime(datetime.now(),'%Y-%m-%d %H:%M:%S')
+time_now = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
 
 
 def get_telecom_model_queryset(request, model):
@@ -326,16 +326,13 @@ def prefixlistupdatetask_previewmailcontent(request, pk):
 
 
 # TODO:Send task mail process
-# Need to makemigrations for mail_sended_time
+# Send Email Process
 @login_required
 @permission_required('telecom.change_prefixlistupdatetask', raise_exception=True, exception=Http404)
 def prefixlistupdatetask_sendtaskmail(request, pk):
     queryset = get_prefixlistupdatetask_queryset(request)
     instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
     instance.meil_sended_time = time_now
+    instance.save()
     task_list_url = reverse('telecom:prefixlistupdatetask_list')
-    form_class = PrefixListUpdateTaskModelForm
-    form = form_class(data=request.POST, instance=instance)
-    if form.is_valid:
-        form.save()
     return redirect(task_list_url)
