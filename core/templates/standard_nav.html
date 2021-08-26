@@ -22,7 +22,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{% url 'news:news_list' %}">{% translate 'News' %} | {% translate 'T00' %}</a>
-            <a class="dropdown-item" href="{% url 'news:news_list' %}">{% translate 'News' %} | {% translate 'Department' %}</a>
+            <a class="dropdown-item" href="{% url 'news:dep_news_list' %}">{% translate 'News' %} | {% translate 'Department' %}</a>
           </div>
         {% endif %}
         {% if perms.diary.view_diary or perms.diary.add_diary %}
