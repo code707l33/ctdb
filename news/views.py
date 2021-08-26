@@ -67,7 +67,6 @@ def dep_news_list(request):
         'is_paginated': is_paginated,
         'is_supervisor': is_supervisor,
     }
-    
     return render(request, template_name, context)
 
 
@@ -79,7 +78,7 @@ def news_create(request):
     form_class = NewsModelForm
     success_url1 = reverse('news:news_list')
     success_url2 = reverse('news:dep_news_list')
-    success_url = success_url1 if request.user.id == 10 else success_url2   # 10:Vicky
+    success_url = success_url1 if request.user.username == 'vicky_lin' else success_url2
     form_buttons = ['create']
     template_name = 'news/news_form.html'
     if request.method == 'POST':
@@ -102,7 +101,7 @@ def news_update(request, pk):
     form_class = NewsModelForm
     success_url1 = reverse('news:news_list')
     success_url2 = reverse('news:dep_news_list')
-    success_url = success_url1 if request.user.id == 10 else success_url2   # 10:Vicky
+    success_url = success_url1 if request.user.username == 'vicky_lin' else success_url2
     form_buttons = ['update']
     template_name = 'news/news_form.html'
     if request.method == 'POST':
@@ -124,11 +123,10 @@ def news_delete(request, pk):
     instance = get_object_or_404(klass=model, pk=pk, created_by=request.user)
     success_url1 = reverse('news:news_list')
     success_url2 = reverse('news:dep_news_list')
-    success_url = success_url1 if request.user.id == 10 else success_url2   # 10:Vicky
+    success_url = success_url1 if request.user.username == 'vicky_lin' else success_url2
     template_name = 'news/news_confirm_delete.html'
     if request.method == 'POST':
         instance.delete()
         return redirect(success_url)
     context = {'model': model}
     return render(request, template_name, context)
-
