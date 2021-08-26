@@ -17,7 +17,7 @@ def get_dep_news_queryset(request):
     accidentally see or touch those they shouldn't.
     """
     model = News
-    queryset = model.objects.all()
+    queryset = model.objects.exclude(created_by_id=10)
     role = request.user.profile.activated_role
     deps = request.user.groups.filter(groupprofile__is_department=True)
     if not role:
