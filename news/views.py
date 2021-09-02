@@ -56,6 +56,10 @@ def dep_news_list(request):
     paginate_by = 5
     template_name = 'news/dep_news_list.html'
     is_supervisor = True
+    dep = request.GET.get('dep')
+    qs = qs.filter(created_by__groups__name=dep) if dep else qs
+    role = request.user.profile.activated_role
+    supervise_roles = role.groupprofile.supervise_roles.all() if role else None
     page_number = request.GET.get('page', '')
     paginator = Paginator(qs, paginate_by)
     page_obj = paginator.get_page(page_number)
@@ -66,6 +70,7 @@ def dep_news_list(request):
         'object_list': page_obj if is_paginated else qs,
         'is_paginated': is_paginated,
         'is_supervisor': is_supervisor,
+        'supervise_roles': supervise_roles,
     }
     return render(request, template_name, context)
 
