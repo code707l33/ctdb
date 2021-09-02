@@ -12,15 +12,25 @@
       <div class="col">
         <div id="blankTop"></div>
         <div id="toolbar" class="d-flex justify-content-end">
+          {% if supervise_roles %}
+          <div class="mr-auto">
+            <select id="rolesSelect" class="shadow-sm form-control" name="roles">
+              <option value="">{% translate 'All' %}</option>
+              {% for role in supervise_roles %}
+              <option value="{{ role.name }}"{% if role.name == request.GET.dep %} selected{% endif %}>{{ role.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          {% endif %}
           {% name model|attr:'_meta'|get_perm_name:'add' as add_perm %}
-          {% if user|has_perm:add_perm and request.user.username == "vicky_lin" %}
+          {% if user|has_perm:add_perm and request.user.username != 'vicky_lin' %}
           <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_url }}">{% translate 'Add' %}</a>
           {% endif %}
         </div>
         <div class="table-responsive">
           <table id="searchTable" class="table table-light table-borderless table-solid">
             {% name model|attr:'_meta'|get_perm_name:'change' as change_perm %}
-            {% if user|has_perm:change_perm and request.user.username == 'vicky_lin' %}
+            {% if user|has_perm:change_perm and request.user.username != 'vicky_lin' %}
             <thead>
               <tr>
                 <th style="width: 1px;">{% translate 'Action' %}</th>
@@ -31,7 +41,7 @@
             <tbody>
               {% for obj in object_list %}
               <tr>
-                {% if user|has_perm:change_perm and request.user.username == 'vicky_lin' %}
+                {% if user|has_perm:change_perm and request.user.username != 'vicky_lin' %}
                 <td class="text-nowrap">{% include 'standard_action_dropdown.html' %}</td>
                 {% endif %}
                 <td class="p-4"><h5>{{ obj.title }}</h5><hr><p>{{ obj.content }}</p><small class="text-secondary text-right d-block">{{ obj.at|date:'Y-m-d A h:m' }}</small></td>
@@ -45,11 +55,16 @@
           </table>
         </div>
         {% if is_paginated %}
-        {% include 'standard_pagination.html' %}
+        {% include 'diary/news_pagination.html' %}
         {% endif %}
         <div id="blankButtom"></div>
       </div>
     </div>
   </div>
 </section>
+{% endblock %}
+
+{% block extrajs %}
+<script src="{% static 'js/table_search.js' %}"></script>
+<script src="{% static 'news/js/news_list.js' %}"></script>
 {% endblock %}

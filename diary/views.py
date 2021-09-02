@@ -45,7 +45,7 @@ def diary_list(request):
     page_obj = paginator.get_page(page_number)
     is_paginated = page_number.lower() != 'all' and page_obj.has_other_pages()
 
-    is_pinned_news = News.objects.filter(is_pinned=True)
+    is_pinned_news = News.objects.filter(is_pinned=True, created_by_id=10)  # 10:Vicky
 
     context = {
         'model': model,

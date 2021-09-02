@@ -15,9 +15,15 @@
     <div class="collapse navbar-collapse" id="togglerTarget">
       <ul class="navbar-nav mr-auto" style="padding-left: 3.55rem;">
         {% if user.is_authenticated %}
-        <a class="nav-item nav-link" href="{% url 'news:news_list' %}">
-          {% translate 'News' %}
-        </a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="true">
+            {% translate 'News' %}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{% url 'news:news_list' %}">{% translate 'News' %} | {% translate 'T00' %}</a>
+            <a class="dropdown-item" href="{% url 'news:dep_news_list' %}">{% translate 'News' %} | {% translate 'Department' %}</a>
+          </div>
         {% endif %}
         {% if perms.diary.view_diary or perms.diary.add_diary %}
         <li class="nav-item dropdown">

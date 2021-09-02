@@ -81,6 +81,7 @@ class PrefixListUpdateTask(models.Model):
     subject_warning = models.CharField(verbose_name=_('Subject warning'), max_length=63, blank=True)
     related_ticket = models.CharField(verbose_name=_('Related ticket'), max_length=63, blank=True)
     remark = models.TextField(verbose_name=_('Remark'), blank=True)
+    meil_sended_time = models.CharField(verbose_name=_('Mail sended time'), max_length=63, blank=True)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta:
@@ -102,3 +103,6 @@ class PrefixListUpdateTask(models.Model):
 
     def preview_mail_content_url(self):
         return reverse('telecom:prefixlistupdatetask_previewmailcontent', kwargs={'pk': self.pk})
+
+    def send_task_mail_url(self):
+        return reverse('telecom:prefixlistupdatetask_sendtaskmail', kwargs={'pk': self.pk})

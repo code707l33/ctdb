@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        .max-w-20 {
+            max-width: 1800px;
+        }
+
+        .w-16 {
+            width: 1800px;
+        }
+
+        .no-wrap {
+            white-space: nowrap;
+        }
+
+        .table-condensed {
+            font-size: 12px;
+        }
+        
+        ul {
+            list-style-type:none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mail_content_preview" style="font-size: 16px;">
+        <p>主旨:[是方電訊] -- Please add new BGP entry for our customer - {{ task.origin_as }}</p>
+        <p>收件人:{{ isps.to }}</p>
+        {% include 'telecom/mail_content.html' %}
+    </div>
+</body>
+
+</html>

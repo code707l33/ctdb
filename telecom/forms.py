@@ -111,4 +111,4 @@ class PrefixListUpdateTaskModelForm(forms.ModelForm):
 
     class Meta:
         model = PrefixListUpdateTask
-        exclude = ['created_by', ]
+        exclude = ['created_by', 'meil_sended_time']
