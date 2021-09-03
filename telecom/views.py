@@ -252,7 +252,7 @@ def prefixlistupdatetask_create(request):
 def prefixlistupdatetask_update(request, pk):
     model = PrefixListUpdateTask
     queryset = get_prefixlistupdatetask_queryset(request)
-    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
+    instance = get_object_or_404(klass=queryset, pk=pk)
     form_class = PrefixListUpdateTaskModelForm
     success_url = reverse('telecom:prefixlistupdatetask_list')
     form_buttons = ['update']
@@ -274,7 +274,7 @@ def prefixlistupdatetask_update(request, pk):
 def prefixlistupdatetask_delete(request, pk):
     model = PrefixListUpdateTask
     queryset = get_prefixlistupdatetask_queryset(request)
-    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
+    instance = get_object_or_404(klass=queryset, pk=pk)
     success_url = reverse('telecom:prefixlistupdatetask_list')
     template_name = 'telecom/prefixlistupdatetask_confirm_delete.html'
     if request.method == 'POST':
@@ -289,8 +289,9 @@ def prefixlistupdatetask_delete(request, pk):
 def prefixlistupdatetask_clone(request, pk):
     model = PrefixListUpdateTask
     queryset = get_prefixlistupdatetask_queryset(request)
-    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
+    instance = get_object_or_404(klass=queryset, pk=pk)
     instance.pk = None
+    instance.created_by = request.user
     form_class = PrefixListUpdateTaskModelForm
     success_url = reverse('telecom:prefixlistupdatetask_list')
     form_buttons = ['update']
@@ -312,7 +313,7 @@ def prefixlistupdatetask_clone(request, pk):
 def prefixlistupdatetask_previewmailcontent(request, pk):
     model = PrefixListUpdateTask
     queryset = get_prefixlistupdatetask_queryset(request)
-    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
+    instance = get_object_or_404(klass=queryset, pk=pk)
     instance.pk = None
     task = model.objects.get(pk=pk)
     ip_type = 'ipv4' if task.ipv4_prefix_list else 'ipv6'
@@ -340,7 +341,7 @@ def prefixlistupdatetask_sendtaskmail(request, pk):
     ipv6_contents = task.ipv6_prefix_list.split(',\r\n')
     isps = task.isps.get()
     queryset = get_prefixlistupdatetask_queryset(request)
-    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
+    instance = get_object_or_404(klass=queryset, pk=pk)
     template_name = 'telecom/mail_content.html'
     context = {'model': model, 'task': task, 'isps': isps, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}
     mail_content = render_to_string(template_name, context)
