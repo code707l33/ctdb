@@ -44,7 +44,7 @@
                 <td class="text-nowrap">{{ obj.created_by }}</td>
                 <td class="text-nowrap">{{ obj.get_update_type_display }}</td>
                 <td class="text-nowrap">{{ obj.isps.all|join_with_newline:','|linebreaks }}</td>
-                <td class="text-nowrap">{{ obj.ispgroups.all|join_with_newline:','|linebreaks }}</td>
+                <td class="text-nowrap">{{ obj.isp_groups.all|join_with_newline:','|linebreaks }}</td>
                 <td class="text-nowrap">{{ obj.origin_as }}</td>
                 <td class="text-nowrap">{{ obj.as_path }}</td>
                 <td class="text-nowrap">{{ obj.ipv4_prefix_list|linebreaks }}</td>

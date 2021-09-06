@@ -96,7 +96,7 @@ def isp_create(request):
 def isp_update(request, pk):
     model = Isp
     queryset = get_isp_queryset(request)
-    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
+    instance = get_object_or_404(klass=queryset, pk=pk)
     form_class = IspModelForm
     success_url = reverse('telecom:isp_list')
     form_buttons = ['update']
@@ -118,7 +118,7 @@ def isp_update(request, pk):
 def isp_delete(request, pk):
     model = Isp
     queryset = get_isp_queryset(request)
-    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
+    instance = get_object_or_404(klass=queryset, pk=pk)
     success_url = reverse('telecom:isp_list')
     template_name = 'telecom/isp_confirm_delete.html'
     if request.method == 'POST':
@@ -174,7 +174,7 @@ def ispgroup_create(request):
 def ispgroup_update(request, pk):
     model = IspGroup
     queryset = get_ispgroup_queryset(request)
-    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
+    instance = get_object_or_404(klass=queryset, pk=pk)
     form_class = IspGroupModelForm
     success_url = reverse('telecom:ispgroup_list')
     form_buttons = ['update']
@@ -196,7 +196,7 @@ def ispgroup_update(request, pk):
 def ispgroup_delete(request, pk):
     model = IspGroup
     queryset = get_ispgroup_queryset(request)
-    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
+    instance = get_object_or_404(klass=queryset, pk=pk)
     success_url = reverse('telecom:ispgroup_list')
     template_name = 'telecom/ispgroup_confirm_delete.html'
     if request.method == 'POST':
@@ -340,6 +340,7 @@ def prefixlistupdatetask_sendtaskmail(request, pk):
     ipv4_contents = task.ipv4_prefix_list.split(',\r\n')
     ipv6_contents = task.ipv6_prefix_list.split(',\r\n')
     isps = task.isps.get()
+    print(isps)
     queryset = get_prefixlistupdatetask_queryset(request)
     instance = get_object_or_404(klass=queryset, pk=pk)
     template_name = 'telecom/mail_content.html'

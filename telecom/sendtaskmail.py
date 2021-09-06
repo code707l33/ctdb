@@ -6,7 +6,7 @@ from django.utils.html import strip_tags
 def handle_task_mail(isps, task, mail_content, debug=settings.DEBUG):
     recipients = isps.to
     recipient_list = list(map(str.strip, recipients.split(';')))
-    email_subject = '主旨:[是方電訊] -- Please add new BGP entry for our customer - ' + task.origin_as
+    email_subject = '[是方電訊] -- Please add new BGP entry for our customer - ' + task.origin_as
     email_content = strip_tags(mail_content)
 
     if debug:
