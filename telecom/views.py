@@ -336,6 +336,8 @@ def prefixlistupdatetask_previewmailcontent(request, pk):
 def prefixlistupdatetask_sendtaskmail(request, pk):
     model = PrefixListUpdateTask
     task = model.objects.get(pk=pk)
+    queryset = get_prefixlistupdatetask_queryset(request)
+    instance = get_object_or_404(klass=queryset, pk=pk)
     ip_type = 'ipv4' if task.ipv4_prefix_list else 'ipv6'
     if task.ipv4_prefix_list and task.ipv6_prefix_list:
         ip_type = 'ipv4 & ipv6'
@@ -346,8 +348,6 @@ def prefixlistupdatetask_sendtaskmail(request, pk):
     except:
         isp_groups = None
     isps = isp_groups if isp_groups else task.isps.all()
-    queryset = get_prefixlistupdatetask_queryset(request)
-    instance = get_object_or_404(klass=queryset, pk=pk)
     template_name = 'telecom/mail_content.html'
     for isp in isps:
         context = {'model': model, 'task': task, 'isp': isp, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}

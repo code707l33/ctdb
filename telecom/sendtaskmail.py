@@ -17,7 +17,7 @@ def handle_task_mail(isp, task, mail_content, debug=settings.DEBUG):
     if debug:
         print("Sending a Email to ", recipient_list)
         print("Sending a Email cc to ", recipient_cc_list)
-        print("Email:\n")
+        print("Email:")
         print(email_subject)
     send_mail(
         email_subject,
