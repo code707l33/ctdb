@@ -11,6 +11,9 @@ def handle_task_mail(isp, task, mail_content, debug=settings.DEBUG):
     recipients_cc = isp.cc[:-1] if isp.cc[-1:] == seperator else isp.cc
     recipient_cc_list = list(map(str.strip, recipients_cc.split(';')))
 
+    recipients_bcc = isp.bcc[:-1] if isp.bcc[-1:] == seperator else isp.bcc
+    recipient_bcc_list = list(map(str.strip, recipients_bcc.split(';')))
+
     email_subject = '[是方電訊] -- Please add new BGP entry for our customer - ' + task.origin_as
     email_content = strip_tags(mail_content)
 
@@ -24,6 +27,7 @@ def handle_task_mail(isp, task, mail_content, debug=settings.DEBUG):
         email_content,
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=recipient_list,
+        bcc=recipient_bcc_list,
         cc=recipient_cc_list,
         html_message=mail_content,
         fail_silently=False,
