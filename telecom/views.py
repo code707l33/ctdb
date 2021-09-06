@@ -344,10 +344,10 @@ def prefixlistupdatetask_sendtaskmail(request, pk):
     ipv4_contents = task.ipv4_prefix_list.split(',\r\n')
     ipv6_contents = task.ipv6_prefix_list.split(',\r\n')
     try:
-        isp_groups = IspGroup.objects.get(pk=task.isp_groups.get().id).isps.all()
+        isp_groups = IspGroup.objects.get(pk=task.isp_groups.get().id)
     except:
         isp_groups = None
-    isps = isp_groups if isp_groups else task.isps.all()
+    isps = isp_groups.isps.all() if isp_groups else task.isps.all()
     template_name = 'telecom/mail_content.html'
     for isp in isps:
         context = {'model': model, 'task': task, 'isp': isp, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}
