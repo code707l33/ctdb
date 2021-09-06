@@ -321,7 +321,11 @@ def prefixlistupdatetask_previewmailcontent(request, pk):
         ip_type = 'ipv4 & ipv6'
     ipv4_contents = task.ipv4_prefix_list.split(',\r\n')
     ipv6_contents = task.ipv6_prefix_list.split(',\r\n')
-    isps = task.isps.get()
+    try:
+        isp_groups = IspGroup.objects.get(pk=task.isp_groups.get().id).isps.all()
+    except:
+        isp_groups = None
+    isps = isp_groups if isp_groups else task.isps.all()
     template_name = 'telecom/mail_content_preview.html'
     context = {'model': model, 'task': task, 'isps': isps, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}
     return render(request, template_name, context)
@@ -339,14 +343,18 @@ def prefixlistupdatetask_sendtaskmail(request, pk):
         ip_type = 'ipv4 & ipv6'
     ipv4_contents = task.ipv4_prefix_list.split(',\r\n')
     ipv6_contents = task.ipv6_prefix_list.split(',\r\n')
-    isps = task.isps.get()
-    print(isps)
+    try:
+        isp_groups = IspGroup.objects.get(pk=task.isp_groups.get().id).isps.all()
+    except:
+        isp_groups = None
+    isps = isp_groups if isp_groups else task.isps.all()
     queryset = get_prefixlistupdatetask_queryset(request)
     instance = get_object_or_404(klass=queryset, pk=pk)
     template_name = 'telecom/mail_content.html'
-    context = {'model': model, 'task': task, 'isps': isps, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}
-    mail_content = render_to_string(template_name, context)
-    handle_task_mail(isps, task, mail_content)
+    for isp in isps:
+        context = {'model': model, 'task': task, 'isp': isp, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}
+        mail_content = render_to_string(template_name, context)
+        handle_task_mail(isp, task, mail_content)
     time_now = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
     instance.meil_sended_time = time_now
     instance.save()

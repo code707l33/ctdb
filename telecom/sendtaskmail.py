@@ -3,9 +3,14 @@ from django.core.mail import send_mail
 from django.utils.html import strip_tags
 
 
-def handle_task_mail(isps, task, mail_content, debug=settings.DEBUG):
-    recipients = isps.to
+def handle_task_mail(isp, task, mail_content, debug=settings.DEBUG):
+    seperator = ';'
+    recipients = isp.to[:-1] if isp.to[-1:] == seperator else isp.to
     recipient_list = list(map(str.strip, recipients.split(';')))
+
+    recipients_cc = isp.cc[:-1] if isp.cc[-1:] == seperator else isp.cc
+    recipient_cc_list = list(map(str.strip, recipients_cc.split(';')))
+
     email_subject = '[是方電訊] -- Please add new BGP entry for our customer - ' + task.origin_as
     email_content = strip_tags(mail_content)
 
@@ -18,6 +23,7 @@ def handle_task_mail(isps, task, mail_content, debug=settings.DEBUG):
         email_content,
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=recipient_list,
+        cc=recipient_cc_list,
         html_message=mail_content,
         fail_silently=False,
     )

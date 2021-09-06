@@ -32,9 +32,12 @@
 
 <body>
     <div id="mail_content_preview" style="font-size: 16px;">
+        {% for isp in isps %}
         <p>主旨:[是方電訊] -- Please add new BGP entry for our customer - {{ task.origin_as }}</p>
-        <p>收件人:{{ isps.to }}</p>
+        <p>收件人:{{ isp.to }}</p>
+        <p>副本:{{ isp.cc }}</p>
         {% include 'telecom/mail_content.html' %}
+        {% endfor %}
     </div>
 </body>
 
