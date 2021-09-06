@@ -331,8 +331,6 @@ def prefixlistupdatetask_previewmailcontent(request, pk):
     return render(request, template_name, context)
 
 
-# TODO:Send task mail process
-# Send Email Process develop
 @login_required
 @permission_required('telecom.change_prefixlistupdatetask', raise_exception=True, exception=Http404)
 def prefixlistupdatetask_sendtaskmail(request, pk):
