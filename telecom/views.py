@@ -321,11 +321,11 @@ def prefixlistupdatetask_previewmailcontent(request, pk):
         ip_type = 'ipv4 & ipv6'
     ipv4_contents = task.ipv4_prefix_list.split(',\r\n')
     ipv6_contents = task.ipv6_prefix_list.split(',\r\n')
-    try:
-        isp_groups = IspGroup.objects.get(pk=task.isp_groups.get().id).isps.all()
-    except:
-        isp_groups = None
-    isps = isp_groups if isp_groups else task.isps.all()
+    ispsqs = task.isps.all()
+    ispgroupsqs = task.isp_groups.get().isps.all() if task.isp_groups.all() else None
+    isps = ispsqs if ispsqs else ispgroupsqs
+    if ispsqs and ispgroupsqs:
+        isps = (ispsqs | ispgroupsqs).distinct()
     template_name = 'telecom/mail_content_preview.html'
     context = {'model': model, 'task': task, 'isps': isps, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}
     return render(request, template_name, context)
@@ -343,11 +343,11 @@ def prefixlistupdatetask_sendtaskmail(request, pk):
         ip_type = 'ipv4 & ipv6'
     ipv4_contents = task.ipv4_prefix_list.split(',\r\n')
     ipv6_contents = task.ipv6_prefix_list.split(',\r\n')
-    try:
-        isp_groups = IspGroup.objects.get(pk=task.isp_groups.get().id)
-    except:
-        isp_groups = None
-    isps = isp_groups.isps.all() if isp_groups else task.isps.all()
+    ispsqs = task.isps.all()
+    ispgroupsqs = task.isp_groups.get().isps.all() if task.isp_groups.all() else None
+    isps = ispsqs if ispsqs else ispgroupsqs
+    if ispsqs and ispgroupsqs:
+        isps = (ispsqs | ispgroupsqs).distinct()
     template_name = 'telecom/mail_content.html'
     for isp in isps:
         context = {'model': model, 'task': task, 'isp': isp, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}
