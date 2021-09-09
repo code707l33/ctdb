@@ -132,7 +132,7 @@ def journals_list(request):
     queryset = get_journals_queryset(request)
     paginate_by = 12
     template_name = 'archive/journals_list.html'
-    # page_number = request.GET.get('page', '')
+    page_number = request.GET.get('page', '')
     page_number = 'all'
     paginator = Paginator(queryset, paginate_by)
     page_obj = paginator.get_page(page_number)
