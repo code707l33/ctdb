@@ -130,9 +130,10 @@ def archive_delete(request, pk):
 def journals_list(request):
     model = Archive
     queryset = get_journals_queryset(request)
-    paginate_by = 5
+    paginate_by = 12
     template_name = 'archive/journals_list.html'
     page_number = request.GET.get('page', '')
+    page_number = 'all'
     paginator = Paginator(queryset, paginate_by)
     page_obj = paginator.get_page(page_number)
     is_paginated = page_number.lower() != 'all' and page_obj.has_other_pages()

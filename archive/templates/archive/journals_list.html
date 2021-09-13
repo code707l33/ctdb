@@ -13,6 +13,14 @@
         <div id="blankTop"></div>
         <div id="toolbar" class="d-flex justify-content-between">
           <input type="text" id="searchInput" class="form-control shadow-sm" placeholder={% translate 'Search..' %}>
+          <div class="mr-auto">
+            <select id="selectOption" class="shadow-sm form-control" name="selectOption">
+              <option value="">{% translate 'All' %}</option>
+              <option value="2020">2020</option>
+              <option value="2021" selected="selected">2021</option>
+              <option value="2022">2022</option>
+            </select>
+          </div>
           {% name model|attr:'_meta'|get_perm_name:'add' as perm_name %}
           {% if user|has_perm:perm_name %}
           <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_journals_url }}">{% translate 'Add' %}</a>
@@ -54,4 +62,5 @@
 
 {% block extrajs %}
 <script src="{% static 'js/table_search.js' %}"></script>
+<script src="{% static 'archive/js/archive_list.js' %}"></script>
 {% endblock %}

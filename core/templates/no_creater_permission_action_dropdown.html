@@ -9,9 +9,6 @@
     {% if user|has_perm:perm_name %}
     <a class="dropdown-item" href="{{ obj.get_update_url }}">{% translate 'Change' %}</a>
     <a class="dropdown-item" href="{{ obj.get_delete_url }}">{% translate 'Delete' %}</a>
-    <a class="dropdown-item" href="{{ obj.get_clone_url }}">{% translate 'Clone' %}</a>
-    <a class="dropdown-item" href="{{ obj.preview_mail_content_url }}">{% translate 'Preview Email Content' %}</a>
-    <a class="dropdown-item" href="{{ obj.send_task_mail_url }}">{% translate 'Send Email' %}</a>
     {% else %}
     <a class="dropdown-item" href="">{% translate 'No available options' %}</a>
     {% endif %}
