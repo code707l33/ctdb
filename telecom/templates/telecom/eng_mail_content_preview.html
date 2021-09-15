@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        .max-w-20 {
+            max-width: 1800px;
+        }
+
+        .w-16 {
+            width: 1800px;
+        }
+
+        .no-wrap {
+            white-space: nowrap;
+        }
+
+        .table-condensed {
+            font-size: 12px;
+        }
+        
+        ul {
+            list-style-type:none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mail_content_preview" style="font-size: 16px;">
+        {% for isp in isps %}
+        <p>Subject:[CHIEF TELECOM] -- Please add new BGP entry for our customer - {{ task.origin_as }}</p>
+        <p>Recevier:{{ isp.to }}</p>
+        <p>CC:{{ isp.cc }}</p>
+        {% include 'telecom/eng_mail_content.html' %}
+        {% endfor %}
+    </div>
+</body>
+
+</html>

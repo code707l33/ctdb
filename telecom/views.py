@@ -327,8 +327,12 @@ def prefixlistupdatetask_previewmailcontent(request, pk):
     if ispsqs and ispgroupsqs:
         isps = (ispsqs | ispgroupsqs).distinct()
     template_name = 'telecom/mail_content_preview.html'
+    eng_template_name = 'telecom/eng_mail_content_preview.html'
     context = {'model': model, 'task': task, 'isps': isps, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}
-    return render(request, template_name, context)
+    if task.eng_mail_type:
+        return render(request, eng_template_name, context)
+    else:
+        return render(request, template_name, context)
 
 
 @login_required
@@ -349,9 +353,13 @@ def prefixlistupdatetask_sendtaskmail(request, pk):
     if ispsqs and ispgroupsqs:
         isps = (ispsqs | ispgroupsqs).distinct()
     template_name = 'telecom/mail_content.html'
+    eng_template_name = 'telecom/eng_mail_content.html'
     for isp in isps:
         context = {'model': model, 'task': task, 'isp': isp, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}
-        mail_content = render_to_string(template_name, context)
+        if task.eng_mail_type:
+            mail_content = render_to_string(eng_template_name, context)
+        else:
+            mail_content = render_to_string(template_name, context)
         handle_task_mail(isp, task, mail_content)
     time_now = datetime.strftime(datetime.now(), '%Y-%m-%d %H:%M:%S')
     instance.meil_sended_time = time_now

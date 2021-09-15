@@ -32,6 +32,7 @@
                 <th style="width: 30%;">{% translate 'IPv4-Prefix-list' %}</th>
                 <th style="width: 30%;">{% translate 'IPv6-Prefix-list' %}</th>
                 <th style="width: 50%;">{% translate 'Mail sended time' %}</th>
+                <th style="width: 50%;">{% translate 'English format' %}</th>
 
               </tr>
             </thead>
@@ -50,6 +51,7 @@
                 <td class="text-nowrap">{{ obj.ipv4_prefix_list|linebreaks }}</td>
                 <td class="text-nowrap">{{ obj.ipv6_prefix_list|linebreaks }}</td>
                 <td class="text-nowrap">{{ obj.meil_sended_time|linebreaks }}</td>
+                <td class="text-nowrap">{{ obj.eng_mail_type }}</td>
               </tr>
               {% empty %}
               <tr>
