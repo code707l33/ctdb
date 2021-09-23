@@ -833,7 +833,7 @@ msgstr "門號"
 
 #: .\pilotadmin\models.py:14
 msgid "Pilot Admin"
-msgstr "070商務群組管理者"
+msgstr "維運CPBX 專用"
 
 #: .\pilotadmin\templates\pilotadmin\pilotadmin_list.html:35
 msgid "Admin Password"
