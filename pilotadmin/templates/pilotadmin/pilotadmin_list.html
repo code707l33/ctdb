@@ -1,0 +1,63 @@
+{% extends 'pilotadmin/base.html' %}
+{% load static i18n widget_tweaks custom_templatetags %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'css/table_toolbar.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid max-w-24u">
+    <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
+      <div class="col">
+        <div id="blankTop"></div>
+        <div id="toolbar" class="d-flex justify-content-between">
+          <form method="POST">
+            {% csrf_token %}
+            <div>
+              <input type="text" id="searchInput" name="customer_name" class="col-auto border border-secondary p-1" placeholder={% translate 'Search..' %}>
+              <input type="submit" value="確定" />
+            </div>
+          </form>
+          {% name model|attr:'_meta'|get_perm_name:'add' as perm_name %}
+          {% if user|has_perm:perm_name %}
+          <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_url }}">{% translate 'Add' %}</a>
+          {% endif %}
+        </div>
+        <div class="table-responsive">
+          <table id="searchTable" class="table table-light table-borderless table-solid">
+            <thead>
+              <tr>
+                <th style="width: 1px;">{% translate 'Action' %}</th>
+                <th style="width: 10px;">{% translate 'Customer Name' %}</th>
+                <th style="width: 10px;">{% translate 'BG name' %}</th>
+                <th style="width: 10px">{% translate 'Direct Number' %}</th>
+                <th style="width: 10px">{% translate 'Admin Password' %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for obj in object_list %}
+              <tr>
+                <td class="text-nowrap">{% include 'standard_action_dropdown.html' %}</td>
+                <td class="text-nowrap">{{ obj.customer_name }}</td>
+                <td class="text-nowrap">{{ obj.bg_name }}</td>
+                <td class="text-nowrap">{{ obj.direct_number }}</td>
+                <td class="text-nowrap">{{ obj.adminpassword }}</td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td class='text-center text-secondary' colspan="100%">{% translate 'No entries.' %}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% if is_paginated %}
+        {% include 'standard_pagination.html' %}
+        {% endif %}
+        <div id="blankButtom"></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
