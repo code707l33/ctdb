@@ -327,12 +327,8 @@ def prefixlistupdatetask_previewmailcontent(request, pk):
     if ispsqs and ispgroupsqs:
         isps = (ispsqs | ispgroupsqs).distinct()
     template_name = 'telecom/mail_content_preview.html'
-    eng_template_name = 'telecom/eng_mail_content_preview.html'
     context = {'model': model, 'task': task, 'isps': isps, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}
-    if task.eng_mail_type:
-        return render(request, eng_template_name, context)
-    else:
-        return render(request, template_name, context)
+    return render(request, template_name, context)
 
 
 @login_required
