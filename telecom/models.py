@@ -19,6 +19,7 @@ class Isp(models.Model):
     telephone = models.CharField(verbose_name=_('Telephone'), max_length=63, blank=True)
     cellphone = models.CharField(verbose_name=_('Cellphone'), max_length=63, blank=True)
     remark = models.TextField(verbose_name=_('Remark'), blank=True)
+    eng_mail_type = models.BooleanField(verbose_name=_('English format'), default=False)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta:
@@ -81,7 +82,6 @@ class PrefixListUpdateTask(models.Model):
     subject_warning = models.CharField(verbose_name=_('Subject warning'), max_length=63, blank=True)
     related_ticket = models.CharField(verbose_name=_('Related ticket'), max_length=63, blank=True)
     remark = models.TextField(verbose_name=_('Remark'), blank=True)
-    eng_mail_type = models.BooleanField(verbose_name=_('English format'), default=False)
     meil_sended_time = models.CharField(verbose_name=_('Mail sended time'), max_length=63, blank=True)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 

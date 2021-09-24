@@ -32,6 +32,7 @@
                 <th style="width: 1px">{% translate 'To' %}</th>
                 <th style="width: 1px">{% translate 'CC' %}</th>
                 <th style="width: 1px">{% translate 'BCC' %}</th>
+                <th style="width: 50%;">{% translate 'English format' %}</th>
               </tr>
             </thead>
             <tbody>
@@ -49,6 +50,7 @@
                 <td class="text-nowrap">{{ obj.to|linebreaks }}</td>
                 <td class="text-nowrap">{{ obj.cc|linebreaks }}</td>
                 <td class="text-nowrap">{{ obj.bcc|linebreaks }}</td>
+                <td class="text-nowrap">{{ obj.eng_mail_type }}</td>
               </tr>
               {% empty %}
               <tr>

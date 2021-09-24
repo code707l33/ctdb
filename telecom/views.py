@@ -356,7 +356,7 @@ def prefixlistupdatetask_sendtaskmail(request, pk):
     eng_template_name = 'telecom/eng_mail_content.html'
     for isp in isps:
         context = {'model': model, 'task': task, 'isp': isp, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}
-        if task.eng_mail_type:
+        if isp.eng_mail_type:
             mail_content = render_to_string(eng_template_name, context)
         else:
             mail_content = render_to_string(template_name, context)
