@@ -15,7 +15,9 @@
           <form method="POST">
             {% csrf_token %}
             <div>
-              <input type="text" id="searchInput" name="customer_name" class="col-auto border border-secondary p-1" placeholder={% translate 'Search..' %}>
+              <input type="text" id="searchInput" name="customer_name" class="col-auto border border-secondary p-1" placeholder={% translate "Search&nbsp;CustomerName" %}>
+              <input type="text" id="searchInput" name="bg_name" class="col-auto border border-secondary p-1" placeholder={% translate 'Search&nbsp;BGName' %}>
+              <input type="text" id="searchInput" name="direct_number" class="col-auto border border-secondary p-1" placeholder={% translate 'Search&nbsp;DirectNumber' %}>
               <input type="submit" value="確定" />
             </div>
           </form>

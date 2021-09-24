@@ -28,7 +28,9 @@ def pilotadmin_list(request):
     queryset = get_all_pilotadmin_queryset(request)
     if request.method == "POST":
         customername = request.POST['customer_name']
-        queryset = model.objects.filter(customer_name__contains=customername)
+        bg_name = request.POST['bg_name']
+        direct_number = request.POST['direct_number']
+        queryset = model.objects.filter(customer_name__contains=customername, bg_name__contains=bg_name, direct_number__contains=direct_number)
     paginate_by = 10
     template_name = 'pilotadmin/pilotadmin_list.html'
     page_number = request.GET.get('page', '')
