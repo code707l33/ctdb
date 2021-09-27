@@ -17,6 +17,12 @@ class Pilotadmin(models.Model):
     def __str__(self):
         return self.customer_name
 
+    def get_list_url(self):
+        return reverse('pilotadmin:pilotadmin_list')
+
+    def get_content_url(self):
+        return reverse('pilotadmin:pilotadmin_content', kwargs={'pk': self.pk})
+
     def get_create_url(self):
         return reverse('pilotadmin:pilotadmin_create')
 

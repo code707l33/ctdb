@@ -48,6 +48,20 @@ def pilotadmin_list(request):
 
 
 @login_required
+@permission_required('pilotadmin.view_pilotadmin', raise_exception=True, exception=Http404)
+def pilotadmin_content(request, pk):
+    model = Pilotadmin
+    queryset = model.objects.get(pk=pk)
+    template_name = 'pilotadmin/pilotadmin_content.html'
+
+    context = {
+        'model': model,
+        'object': queryset,
+    }
+    return render(request, template_name, context)
+
+
+@login_required
 @permission_required('pilotadmin.add_pilotadmin', raise_exception=True, exception=Http404)
 def pilotadmin_create(request):
     model = Pilotadmin

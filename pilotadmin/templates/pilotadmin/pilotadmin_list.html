@@ -33,8 +33,6 @@
                 <th style="width: 1px;">{% translate 'Action' %}</th>
                 <th style="width: 10px;">{% translate 'Customer Name' %}</th>
                 <th style="width: 10px;">{% translate 'BG name' %}</th>
-                <th style="width: 10px">{% translate 'Direct Number' %}</th>
-                <th style="width: 10px">{% translate 'Admin Password' %}</th>
               </tr>
             </thead>
             <tbody>
@@ -43,8 +41,6 @@
                 <td class="text-nowrap">{% include 'pilotadmin/pilotadmin_action_dropdown.html' %}</td>
                 <td class="text-nowrap">{{ obj.customer_name }}</td>
                 <td class="text-nowrap">{{ obj.bg_name }}</td>
-                <td class="text-nowrap">{{ obj.direct_number }}</td>
-                <td class="text-nowrap">{{ obj.adminpassword }}</td>
               </tr>
               {% empty %}
               <tr>

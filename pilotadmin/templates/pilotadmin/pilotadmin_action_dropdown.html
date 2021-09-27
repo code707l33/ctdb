@@ -6,6 +6,10 @@
     {% translate 'Choose' %}
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    {% name model|attr:'_meta'|get_perm_name:'view' as perm_name %}
+    {% if user|has_perm:perm_name %}
+    <a class="dropdown-item" href="{{ obj.get_content_url }}">{% translate 'View' %}</a>
+    {% endif %}
     {% name model|attr:'_meta'|get_perm_name:'change' as perm_name %}
     {% if user|has_perm:perm_name %}
     <a class="dropdown-item" href="{{ obj.get_update_url }}">{% translate 'Change' %}</a>
