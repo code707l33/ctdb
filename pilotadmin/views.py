@@ -25,24 +25,18 @@ def get_all_pilotadmin_queryset(request):
 @permission_required('pilotadmin.view_pilotadmin', raise_exception=True, exception=Http404)
 def pilotadmin_list(request):
     model = Pilotadmin
-    queryset = get_all_pilotadmin_queryset(request)
+    queryset = None
     if request.method == "POST":
         customername = request.POST['customer_name']
         bg_name = request.POST['bg_name']
         direct_number = request.POST['direct_number']
         queryset = model.objects.filter(customer_name__contains=customername, bg_name__contains=bg_name, direct_number__contains=direct_number)
-    paginate_by = 10
+
     template_name = 'pilotadmin/pilotadmin_list.html'
-    page_number = request.GET.get('page', '')
-    paginator = Paginator(queryset, paginate_by)
-    page_obj = paginator.get_page(page_number)
-    is_paginated = page_number.lower() != 'all' and page_obj.has_other_pages()
 
     context = {
         'model': model,
-        'page_obj': page_obj,
-        'object_list': page_obj if is_paginated else queryset,
-        'is_paginated': is_paginated,
+        'object_list': queryset,
     }
     return render(request, template_name, context)
 
