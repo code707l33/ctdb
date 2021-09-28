@@ -90,6 +90,7 @@ INSTALLED_APPS += [
     'log.apps.LogConfig',
     'api.apps.ApiConfig',
     'user.apps.UserConfig',
+    'pilotadmin.apps.PilotadminConfig'
 ]
 
 if DEBUG:

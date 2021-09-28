@@ -60,6 +60,24 @@
           {% endif %}
         </li>
         <li class="nav-item dropdown">
+          {% if perms.pilotadmin.view_pilotadmin or perms.pilotadmin.add_pilotadmin %}
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="true">
+            {% translate 'Pilot Admin' %}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% if perms.pilotadmin.view_pilotadmin %}
+            <a class="dropdown-item" href="{% url 'pilotadmin:pilotadmin_list' %}">{% translate 'Pilot Admin' %} |
+              {% translate 'List' %}</a>
+            {% endif %}
+            {% if perms.pilotadmin.add_pilotadmin %}
+            <a class="dropdown-item" href="{% url 'pilotadmin:pilotadmin_create' %}">{% translate 'Pilot Admin' %} |
+              {% translate 'Add' %}</a>
+            {% endif %}
+          </div>
+          {% endif %}
+        </li>
+        <li class="nav-item dropdown">
           {% if perms.telecom.view_isp or perms.telecom.add_isp or perms.telecom.view_ispgroup or perms.telecom.add_ispgroup or perms.telecom.view_prefixlistupdatetask or perms.telecom.add_prefixlistupdatetask %}
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="true">
