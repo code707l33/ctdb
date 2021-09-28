@@ -6,6 +6,9 @@ from django.dispatch import receiver
 from diary.models import Diary
 from diary.serializers import DiaryModelSerializer
 
+from pilotadmin.models import Pilotadmin
+from pilotadmin.serializers import PilotadminModelSerializer
+
 from .models import Log
 
 
@@ -36,4 +39,18 @@ def post_delete_diary(sender, instance, **kwargs):
         model_name=model_name,
         data=json.dumps(DiaryModelSerializer(instance).data, ensure_ascii=False),
         created_by=created_by,
+    )
+
+
+@receiver(post_save, sender=Pilotadmin, dispatch_uid='post_save_pilotadmin')
+def post_save_pilotadmin(sender, instance, created, **kwargs):
+    action = 'CREATE' if created else 'UPDATE'
+    app_label = sender._meta.app_label
+    model_name = sender._meta.model_name
+    Log.objects.create(
+        action=action,
+        app_label=app_label,
+        model_name=model_name,
+        data=json.dumps(PilotadminModelSerializer(instance).data, ensure_ascii=False),
+        created_by=None,
     )
