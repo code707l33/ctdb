@@ -9,6 +9,9 @@ from core.decorators import permission_required
 from .forms import PilotadminModelForm
 from .models import Pilotadmin
 
+from log.models import Log
+from log.forms import LogModelForm
+
 
 def get_all_pilotadmin_queryset(request):
     """
@@ -20,6 +23,16 @@ def get_all_pilotadmin_queryset(request):
     queryset = model.objects.all()
     return queryset
 
+def pilot_log_record(action, data):
+    processmodel = Pilotadmin
+    model = Log
+    instance = model()
+    instance.action = action
+    instance.app_label = processmodel._meta.app_label
+    instance.model_name = processmodel._meta.model_name
+    instance.data = data
+    instance.created_by=None
+    instance.save()
 
 @login_required
 @permission_required('pilotadmin.view_pilotadmin', raise_exception=True, exception=Http404)
@@ -47,6 +60,10 @@ def pilotadmin_content(request, pk):
     model = Pilotadmin
     queryset = model.objects.get(pk=pk)
     template_name = 'pilotadmin/pilotadmin_content.html'
+
+    action = "VIEW"
+    log_data = f"{request.user} view customer info:{queryset.customer_name}, {queryset.direct_number}"
+    pilot_log_record(action=action, data=log_data)
 
     context = {
         'model': model,
