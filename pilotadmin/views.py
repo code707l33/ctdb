@@ -10,7 +10,6 @@ from .forms import PilotadminModelForm
 from .models import Pilotadmin
 
 from log.models import Log
-from log.forms import LogModelForm
 
 
 def get_all_pilotadmin_queryset(request):
