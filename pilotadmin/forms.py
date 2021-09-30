@@ -6,4 +6,4 @@ from .models import Pilotadmin
 class PilotadminModelForm(forms.ModelForm):
     class Meta:
         model = Pilotadmin
-        exclude = []
+        exclude = ['updated_by']

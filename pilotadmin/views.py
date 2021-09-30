@@ -60,7 +60,7 @@ def pilotadmin_content(request, pk):
     queryset = model.objects.get(pk=pk)
     template_name = 'pilotadmin/pilotadmin_content.html'
 
-    action = "VIEW"
+    action = "READ"
     log_data = f"{request.user} view customer info:{queryset.customer_name}, {queryset.direct_number}"
     pilot_log_record(action=action, data=log_data)
 
@@ -75,7 +75,7 @@ def pilotadmin_content(request, pk):
 @permission_required('pilotadmin.add_pilotadmin', raise_exception=True, exception=Http404)
 def pilotadmin_create(request):
     model = Pilotadmin
-    instance = model()
+    instance = model(updated_by=request.user)
     form_class = PilotadminModelForm
     success_url = reverse('pilotadmin:pilotadmin_list')
     form_buttons = ['create']
@@ -103,6 +103,7 @@ def pilotadmin_update(request, pk):
     form_buttons = ['update']
     template_name = 'pilotadmin/pilotadmin_form.html'
     if request.method == 'POST':
+        instance.updated_by = request.user
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
             form.save()
@@ -123,6 +124,7 @@ def pilotadmin_delete(request, pk):
     success_url = reverse('pilotadmin:pilotadmin_list')
     template_name = 'pilotadmin/pilotadmin_confirm_delete.html'
     if request.method == 'POST':
+        instance.updated_by = request.user
         instance.delete()
         return redirect(success_url)
     context = {'model': model}
