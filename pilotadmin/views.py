@@ -9,6 +9,8 @@ from core.decorators import permission_required
 from .forms import PilotadminModelForm
 from .models import Pilotadmin
 
+from log.models import Log
+
 
 def get_all_pilotadmin_queryset(request):
     """
@@ -20,6 +22,16 @@ def get_all_pilotadmin_queryset(request):
     queryset = model.objects.all()
     return queryset
 
+def pilot_log_record(action, data):
+    processmodel = Pilotadmin
+    model = Log
+    instance = model()
+    instance.action = action
+    instance.app_label = processmodel._meta.app_label
+    instance.model_name = processmodel._meta.model_name
+    instance.data = data
+    instance.created_by=None
+    instance.save()
 
 @login_required
 @permission_required('pilotadmin.view_pilotadmin', raise_exception=True, exception=Http404)
@@ -48,6 +60,10 @@ def pilotadmin_content(request, pk):
     queryset = model.objects.get(pk=pk)
     template_name = 'pilotadmin/pilotadmin_content.html'
 
+    action = "READ"
+    log_data = f"{request.user} view customer info:{queryset.customer_name}, {queryset.direct_number}"
+    pilot_log_record(action=action, data=log_data)
+
     context = {
         'model': model,
         'object': queryset,
@@ -59,7 +75,7 @@ def pilotadmin_content(request, pk):
 @permission_required('pilotadmin.add_pilotadmin', raise_exception=True, exception=Http404)
 def pilotadmin_create(request):
     model = Pilotadmin
-    instance = model()
+    instance = model(updated_by=request.user)
     form_class = PilotadminModelForm
     success_url = reverse('pilotadmin:pilotadmin_list')
     form_buttons = ['create']
@@ -87,6 +103,7 @@ def pilotadmin_update(request, pk):
     form_buttons = ['update']
     template_name = 'pilotadmin/pilotadmin_form.html'
     if request.method == 'POST':
+        instance.updated_by = request.user
         form = form_class(data=request.POST, instance=instance)
         if form.is_valid():
             form.save()
@@ -107,6 +124,7 @@ def pilotadmin_delete(request, pk):
     success_url = reverse('pilotadmin:pilotadmin_list')
     template_name = 'pilotadmin/pilotadmin_confirm_delete.html'
     if request.method == 'POST':
+        instance.updated_by = request.user
         instance.delete()
         return redirect(success_url)
     context = {'model': model}

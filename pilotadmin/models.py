@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -9,6 +10,7 @@ class Pilotadmin(models.Model):
     bg_name = models.CharField(verbose_name=_('BG name'), max_length=50)
     direct_number = models.CharField(verbose_name=_('Direct Number'), max_length=20)
     adminpassword = models.CharField(verbose_name=('Admin Password'), max_length=20)
+    updated_by = models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = _('Pilot Admin')
