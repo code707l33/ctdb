@@ -28,7 +28,7 @@ def handle_task_mail(isp, task, mail_content, debug=settings.DEBUG):
     send_mail(
         email_subject,
         email_content,
-        from_email=settings.DEFAULT_FROM_EMAIL,
+        from_email=settings.T21_FROM_MAIL,
         recipient_list=recipient_list,
         bcc=recipient_bcc_list,
         cc=recipient_cc_list,

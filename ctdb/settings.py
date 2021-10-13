@@ -285,6 +285,7 @@ else:
     EMAIL_HOST_PASSWORD = ''
     DEFAULT_FROM_EMAIL = 'TDB <TDB@chief.com.tw>'
     SERVER_EMAIL = 'TDB <TDB@chief.com.tw>'
+    T21_FROM_MAIL = 't21@chief.com.tw'
 
 
 # Authentication things
