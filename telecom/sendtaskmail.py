@@ -15,9 +15,9 @@ def handle_task_mail(isp, task, mail_content, debug=settings.DEBUG):
     recipient_bcc_list = list(map(str.strip, recipients_bcc.split(';')))
 
     if isp.eng_mail_type:
-        email_subject = '[CHIEF TELECOM] -- Please add new BGP entry for our customer - ' + task.origin_as
+        email_subject = f'[CHIEF TELECOM] -- Please add new BGP entry for our customer - {task.origin_as} {task.subject_warning}'
     else:
-        email_subject = '[是方電訊] -- Please add new BGP entry for our customer - ' + task.origin_as
+        email_subject = f'[是方電訊] -- Please add new BGP entry for our customer - {task.origin_as} {task.subject_warning}'
     email_content = strip_tags(mail_content)
 
     if debug:
