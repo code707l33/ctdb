@@ -34,7 +34,7 @@
     <div id="mail_content_preview" style="font-size: 16px;">
         {% for isp in isps %}
         {% if isp.eng_mail_type %}
-        <p>Subject:[CHIEF TELECOM] -- Please add new BGP entry for our customer - {{ task.origin_as }} {{task.subject_warning}}</p>
+        <p>Subject:[CHIEF TELECOM] -- Please add new BGP entry for our customer - {{ task.origin_as }} ({{task.subject_warning}})</p>
         <p>Recevier:{{ isp.to }}</p>
         <p>CC:{{ isp.cc }}</p>
         {% include 'telecom/eng_mail_content.html' %}
