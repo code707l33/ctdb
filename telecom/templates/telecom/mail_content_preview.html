@@ -39,7 +39,7 @@
         <p>CC:{{ isp.cc }}</p>
         {% include 'telecom/eng_mail_content.html' %}
         {% else %}
-        <p>主旨:[是方電訊] -- Please add new BGP entry for our customer - {{ task.origin_as }} {{task.subject_warning}}</p>
+        <p>主旨:[是方電訊] -- Please add new BGP entry for our customer - {{ task.origin_as }} ({{task.subject_warning}})</p>
         <p>收件人:{{ isp.to }}</p>
         <p>副本:{{ isp.cc }}</p>
         {% include 'telecom/mail_content.html' %}
