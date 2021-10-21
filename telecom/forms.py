@@ -1,4 +1,5 @@
 from django import forms
+from django.forms.widgets import Widget
 from django.utils.translation import gettext_lazy as _
 
 from .models import Isp, IspGroup, PrefixListUpdateTask
@@ -89,7 +90,6 @@ class PrefixListUpdateTaskModelForm(forms.ModelForm):
                     'Please enter a prefix-list. For example:\n'
                     '\n'
                     '2404:63C0::/32 le 64\n'
-
                 ),
                 'rows': 6
             }
@@ -104,6 +104,19 @@ class PrefixListUpdateTaskModelForm(forms.ModelForm):
                     'Please enter related tickets of this update task, if there is any.'
                 ),
                 'rows': 3
+            }
+        ),
+        required=False
+    )
+
+    remark = forms.CharField(
+        label=_('Remark'),
+        widget=forms.Textarea(
+            attrs={
+                'placeholder': _(
+                    'Only for the description of the task, the content will not appear in the notification mail.'
+                ),
+                'rows': 6
             }
         ),
         required=False
