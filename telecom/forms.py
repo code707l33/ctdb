@@ -1,5 +1,4 @@
 from django import forms
-from django.forms.widgets import Widget
 from django.utils.translation import gettext_lazy as _
 
 from .models import Isp, IspGroup, PrefixListUpdateTask
