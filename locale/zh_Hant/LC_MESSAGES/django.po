@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-27 11:14+0800\n"
+"POT-Creation-Date: 2021-10-21 14:36+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -148,7 +148,7 @@ msgstr "使用者"
 msgid "Phone number"
 msgstr "電話號碼"
 
-#: .\accounts\models.py:45 .\core\templates\standard_nav.html:159
+#: .\accounts\models.py:45 .\core\templates\standard_nav.html:163
 msgid "Profile"
 msgstr "個人檔案"
 
@@ -205,7 +205,7 @@ msgstr "© 2020 保留所有權利。"
 #: .\accounts\templates\registration\signup.html:20
 #: .\accounts\templates\registration\signup_with_account_and_password.html:13
 #: .\accounts\templates\registration\signup_with_email.html:13
-#: .\core\templates\standard_nav.html:185
+#: .\core\templates\standard_nav.html:189
 msgid "Login"
 msgstr "登入"
 
@@ -261,7 +261,7 @@ msgid "Back to the homepage."
 msgstr "返回首頁"
 
 #: .\accounts\templates\registration\password_change_form.html:11
-#: .\core\templates\standard_nav.html:160
+#: .\core\templates\standard_nav.html:164
 msgid "Password change"
 msgstr "密碼變更"
 
@@ -308,8 +308,8 @@ msgid "I didn't recieve it."
 msgstr "我沒有收到"
 
 #: .\accounts\templates\registration\password_reset_form.html:11
-#: .\core\templates\standard_nav.html:162
-#: .\core\templates\standard_nav.html:188
+#: .\core\templates\standard_nav.html:166
+#: .\core\templates\standard_nav.html:192
 msgid "Password reset"
 msgstr "密碼重置"
 
@@ -322,7 +322,7 @@ msgstr "重置"
 #: .\accounts\templates\registration\signup_with_account_and_password.html:41
 #: .\accounts\templates\registration\signup_with_email.html:11
 #: .\accounts\templates\registration\signup_with_email.html:44
-#: .\core\templates\standard_nav.html:186
+#: .\core\templates\standard_nav.html:190
 msgid "Sign up"
 msgstr "註冊"
 
@@ -450,7 +450,7 @@ msgstr "名稱"
 #: .\reminder\templates\reminder\reminder_list.html:62
 #: .\telecom\templates\telecom\isp_list.html:57
 #: .\telecom\templates\telecom\ispgroup_list.html:45
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:55
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:57
 msgid "No entries."
 msgstr "沒有條目"
 
@@ -582,6 +582,7 @@ msgstr "日誌"
 #: .\core\templates\standard_nav.html:95 .\core\templates\standard_nav.html:104
 #: .\core\templates\standard_nav.html:122
 #: .\core\templates\standard_nav.html:145
+#: .\core\templates\standard_nav.html:149
 msgid "List"
 msgstr "列表"
 
@@ -591,8 +592,8 @@ msgid "Reminder"
 msgstr ""
 
 #: .\core\templates\standard_nav.html:66 .\core\templates\standard_nav.html:70
-#: .\core\templates\standard_nav.html:74 .\pilotadmin\models.py:14
-#: .\pilotadmin\models.py:15
+#: .\core\templates\standard_nav.html:74 .\pilotadmin\models.py:16
+#: .\pilotadmin\models.py:17
 msgid "Pilot Admin"
 msgstr "維運CPBX 專用"
 
@@ -624,19 +625,20 @@ msgid "journals Add"
 msgstr "新增月刊"
 
 #: .\core\templates\standard_nav.html:140
-#: .\core\templates\standard_nav.html:144 .\log\models.py:18
+#: .\core\templates\standard_nav.html:144
+#: .\core\templates\standard_nav.html:148 .\log\models.py:18
 msgid "Log"
 msgstr ""
 
-#: .\core\templates\standard_nav.html:158
+#: .\core\templates\standard_nav.html:162
 msgid "Logout"
 msgstr "登出"
 
-#: .\core\templates\standard_nav.html:174
+#: .\core\templates\standard_nav.html:178
 msgid "No available roles"
 msgstr "沒有可用的角色"
 
-#: .\core\templates\standard_nav.html:182
+#: .\core\templates\standard_nav.html:186
 msgid "Guest"
 msgstr "訪客"
 
@@ -771,8 +773,8 @@ msgid "To do"
 msgstr "待辦事項"
 
 #: .\diary\models.py:22 .\diary\templates\diary\diary_list.html:53
-#: .\telecom\models.py:21 .\telecom\models.py:46 .\telecom\models.py:84
-#: .\telecom\templates\telecom\ispgroup_list.html:29
+#: .\telecom\forms.py:113 .\telecom\models.py:21 .\telecom\models.py:46
+#: .\telecom\models.py:84 .\telecom\templates\telecom\ispgroup_list.html:29
 msgid "Remark"
 msgstr "備註"
 
@@ -827,19 +829,19 @@ msgstr "於"
 msgid "New"
 msgstr "最新消息"
 
-#: .\pilotadmin\models.py:8
+#: .\pilotadmin\models.py:9
 #: .\pilotadmin\templates\pilotadmin\pilotadmin_content.html:18
 #: .\pilotadmin\templates\pilotadmin\pilotadmin_list.html:34
 msgid "Customer Name"
 msgstr "客戶名稱"
 
-#: .\pilotadmin\models.py:9
+#: .\pilotadmin\models.py:10
 #: .\pilotadmin\templates\pilotadmin\pilotadmin_content.html:19
 #: .\pilotadmin\templates\pilotadmin\pilotadmin_list.html:35
 msgid "BG name"
 msgstr "BG 名稱"
 
-#: .\pilotadmin\models.py:10
+#: .\pilotadmin\models.py:11
 #: .\pilotadmin\templates\pilotadmin\pilotadmin_content.html:20
 msgid "Direct Number"
 msgstr "門號"
@@ -884,8 +886,8 @@ msgstr ""
 "2021-03-29,\n"
 "2021-04-01\n"
 
-#: .\reminder\forms.py:28 .\telecom\forms.py:13 .\telecom\forms.py:28
-#: .\telecom\forms.py:44
+#: .\reminder\forms.py:28 .\telecom\forms.py:14 .\telecom\forms.py:29
+#: .\telecom\forms.py:45
 msgid ""
 "Please enter one or more Email separated by \";\".\n"
 "For example:\n"
@@ -1009,29 +1011,29 @@ msgstr "起始日"
 msgid "Stop date"
 msgstr "終止日"
 
-#: .\telecom\forms.py:9 .\telecom\models.py:16
+#: .\telecom\forms.py:10 .\telecom\models.py:16
 #: .\telecom\templates\telecom\isp_list.html:32
 msgid "To"
 msgstr "收件者"
 
-#: .\telecom\forms.py:24 .\telecom\models.py:17
+#: .\telecom\forms.py:25 .\telecom\models.py:17
 #: .\telecom\templates\telecom\isp_list.html:33
 msgid "CC"
 msgstr "副本"
 
-#: .\telecom\forms.py:40 .\telecom\models.py:18
+#: .\telecom\forms.py:41 .\telecom\models.py:18
 #: .\telecom\templates\telecom\isp_list.html:34
 msgid "BCC"
 msgstr "密件副本"
 
-#: .\telecom\forms.py:70 .\telecom\models.py:80
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:32
+#: .\telecom\forms.py:71 .\telecom\models.py:80
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:33
 #, fuzzy
 #| msgid "Prefix-list"
 msgid "IPv4-Prefix-list"
 msgstr "Prefix-list"
 
-#: .\telecom\forms.py:74
+#: .\telecom\forms.py:75
 msgid ""
 "Please enter a prefix-list. For example:\n"
 "\n"
@@ -1043,14 +1045,14 @@ msgstr ""
 "100.100.100.100/24,\n"
 "100.100.200.100/22 le 24,\n"
 
-#: .\telecom\forms.py:85 .\telecom\models.py:81
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:33
+#: .\telecom\forms.py:86 .\telecom\models.py:81
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:34
 #, fuzzy
 #| msgid "Prefix-list"
 msgid "IPv6-Prefix-list"
 msgstr "Prefix-list"
 
-#: .\telecom\forms.py:89
+#: .\telecom\forms.py:90
 #, fuzzy
 #| msgid ""
 #| "Please enter a prefix-list. For example:\n"
@@ -1068,12 +1070,19 @@ msgstr ""
 "100.100.200.100/22 le 24,\n"
 
 #: .\telecom\forms.py:100 .\telecom\models.py:83
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:32
 msgid "Related ticket"
 msgstr "相關派單"
 
 #: .\telecom\forms.py:104
 msgid "Please enter related tickets of this update task, if there is any."
 msgstr "若有的話，請輸入此筆更新任務的相關派單。"
+
+#: .\telecom\forms.py:117
+msgid ""
+"Only for the description of the task, the content will not appear in the "
+"notification mail."
+msgstr "僅供該任務描述註記紀錄，內容不會出現在通知信裡"
 
 #: .\telecom\models.py:12
 msgid "Chinese Name"
@@ -1142,7 +1151,7 @@ msgid "Subject warning"
 msgstr "主旨警語"
 
 #: .\telecom\models.py:85
-#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:34
+#: .\telecom\templates\telecom\prefixlistupdatetask_list.html:35
 msgid "Mail sended time"
 msgstr "郵件寄送時間"
 
