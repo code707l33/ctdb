@@ -10,7 +10,7 @@ from core.validators import (validate_comma_separated_prefix_list_string,
 class Isp(models.Model):
     name = models.CharField(verbose_name=_('Name'), max_length=63)
     cname = models.CharField(verbose_name=_('Chinese Name'), max_length=63)
-    customer_no = models.CharField(verbose_name=_('Customer No.'), max_length=63)
+    customer_no = models.CharField(verbose_name=_('Customer No.'), max_length=150, blank=True)
     upstream_as = models.CharField(verbose_name=_('Upstream AS'), max_length=63)
     primary_contact = models.CharField(verbose_name=_('Primary contact'), max_length=63)
     to = models.TextField(verbose_name=_('To'), blank=True, validators=[validate_semicolon_seperated_email_string, ])
