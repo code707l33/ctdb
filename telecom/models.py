@@ -28,7 +28,7 @@ class Isp(models.Model):
         verbose_name_plural = _('ISPs')
 
     def __str__(self):
-        return self.name
+        return f'{self.name} ({self.cname})'
 
     def get_create_url(self):
         return reverse('telecom:isp_create')
