@@ -106,7 +106,12 @@ def archive_update(request, pk):
     instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
     form_class = ArchiveModelForm
     type = instance.type
-    success_url = reverse('archive:archive_list') if type == "files" else reverse('archive:journals_list')
+    if type == 'files':
+        success_url = reverse('archive:archive_list')
+    elif type == 'journals':
+        success_url = reverse('archive:journals_list')
+    elif type == 'announce':
+        success_url = reverse('archive:announce_list')
     form_buttons = ['update']
     template_name = 'archive/archive_form.html'
     if request.method == 'POST':
@@ -128,7 +133,12 @@ def archive_delete(request, pk):
     queryset = get_all_archive_queryset(request)
     instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
     type = instance.type
-    success_url = reverse('archive:archive_list') if type == "files" else reverse('archive:journals_list')
+    if type == 'files':
+        success_url = reverse('archive:archive_list')
+    elif type == 'journals':
+        success_url = reverse('archive:journals_list')
+    elif type == 'announce':
+        success_url = reverse('archive:announce_list')
     template_name = 'archive/archive_confirm_delete.html'
     if request.method == 'POST':
         instance.delete()
