@@ -33,3 +33,6 @@ class Archive(models.Model):
 
     def get_create_journals_url(self):
         return reverse('archive:journals_create')
+
+    def get_create_announce_url(self):
+        return reverse('archive:announce_create')

@@ -45,6 +45,18 @@ def get_journals_queryset(request):
     return queryset
 
 
+# 處級佈達專區
+def get_announce_queryset(request):
+    """
+    The queryset of model `Archive` with filter depending on user's role/identity/group.
+    The views below will use this as a basic queryset. This ensures that users won't
+    accidentally see or touch those they shouldn't.
+    """
+    model = Archive
+    queryset = model.objects.filter(type='announce')
+    return queryset
+
+
 @login_required
 @permission_required('archive.view_archive', raise_exception=True, exception=Http404)
 def archive_list(request):
@@ -153,6 +165,48 @@ def journals_create(request):
     instance = model(created_by=request.user, type='journals')
     form_class = ArchiveModelForm
     success_url = reverse('archive:journals_list')
+    form_buttons = ['create']
+    template_name = 'archive/archive_form.html'
+    if request.method == 'POST':
+        form = form_class(data=request.POST, files=request.FILES, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect(success_url)
+        context = {'model': model, 'form': form, 'form_buttons': form_buttons}
+        return render(request, template_name, context)
+    form = form_class()
+    context = {'model': model, 'form': form, 'form_buttons': form_buttons}
+    return render(request, template_name, context)
+
+
+@login_required
+@permission_required('archive.view_archive', raise_exception=True, exception=Http404)
+def announce_list(request):
+    model = Archive
+    queryset = get_announce_queryset(request)
+    paginate_by = 12
+    template_name = 'archive/announce_list.html'
+    page_number = request.GET.get('page', '')
+    page_number = 'all'
+    paginator = Paginator(queryset, paginate_by)
+    page_obj = paginator.get_page(page_number)
+    is_paginated = page_number.lower() != 'all' and page_obj.has_other_pages()
+    context = {
+        'model': model,
+        'page_obj': page_obj,
+        'object_list': page_obj if is_paginated else queryset,
+        'is_paginated': is_paginated,
+    }
+    return render(request, template_name, context)
+
+
+@login_required
+@permission_required('archive.add_archive', raise_exception=True, exception=Http404)
+def announce_create(request):
+    model = Archive
+    instance = model(created_by=request.user, type='announce')
+    form_class = ArchiveModelForm
+    success_url = reverse('archive:announce_list')
     form_buttons = ['create']
     template_name = 'archive/archive_form.html'
     if request.method == 'POST':

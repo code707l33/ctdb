@@ -130,6 +130,12 @@
             {% if perms.archive.add_archive %}
             <a class="dropdown-item" href="{% url 'archive:journals_create' %}">{% translate 'Archive' %} | {% translate 'journals Add' %}</a>
             {% endif %}
+            {% if perms.archive.view_archive %}
+            <a class="dropdown-item" href="{% url 'archive:announce_list' %}">{% translate 'Archive' %} | {% translate 'announce List' %}</a>
+            {% endif %}
+            {% if perms.archive.add_archive %}
+            <a class="dropdown-item" href="{% url 'archive:announce_create' %}">{% translate 'Archive' %} | {% translate 'announce Add' %}</a>
+            {% endif %}
           </div>
           {% endif %}
         </li>

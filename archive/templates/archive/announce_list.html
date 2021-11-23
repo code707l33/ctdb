@@ -15,7 +15,7 @@
           <input type="text" id="searchInput" class="form-control shadow-sm" placeholder={% translate 'Search..' %}>
           {% name model|attr:'_meta'|get_perm_name:'add' as perm_name %}
           {% if user|has_perm:perm_name %}
-          <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_t00announce_url }}">{% translate 'Add' %}</a>
+          <a id="addButton" class="btn btn-light border shadow-sm" href="{{ model.get_create_announce_url }}">{% translate 'Add' %}</a>
           {% endif %}
         </div>
         <div class="table-responsive">

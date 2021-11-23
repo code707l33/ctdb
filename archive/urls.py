@@ -2,6 +2,7 @@ from django.urls import path
 
 from .views import archive_create, archive_delete, archive_list, archive_update
 from .views import journals_list, journals_create
+from .views import announce_list, announce_create
 
 app_name = 'archive'
 
@@ -12,4 +13,6 @@ urlpatterns = [
     path('archives/<int:pk>/delete/', archive_delete, name='archive_delete'),
     path('archives/journals/', journals_list, name='journals_list'),
     path('archives/journals/add/', journals_create, name='journals_create'),
+    path('archives/announce/', announce_list, name='announce_list'),
+    path('archives/announce/add/', announce_create, name='announce_create'),
 ]
