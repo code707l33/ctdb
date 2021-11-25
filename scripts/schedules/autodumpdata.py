@@ -23,9 +23,10 @@ def dumpdata_from_DB():
     print('start...')
     os.system(backup_cmd)
 
+dumpdata_from_DB()
 
-schedule.every().day.at('03:00').do(dumpdata_from_DB)
+# schedule.every().day.at('03:00').do(dumpdata_from_DB)
 
-while True:
-    schedule.run_pending()
-    time.sleep(60)
+# while True:
+#     schedule.run_pending()
+#     time.sleep(60)
