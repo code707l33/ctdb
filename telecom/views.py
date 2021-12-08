@@ -34,7 +34,7 @@ def get_telecom_model_queryset(request, model):
 
 def get_isp_queryset(request):
     model = Isp
-    queryset = get_telecom_model_queryset(request, model=model).exclude(name='Select')
+    queryset = get_telecom_model_queryset(request, model=model)
     return queryset
 
 
@@ -326,8 +326,6 @@ def prefixlistupdatetask_previewmailcontent(request, pk):
     isps = ispsqs if ispsqs else ispgroupsqs
     if ispsqs and ispgroupsqs:
         isps = (ispsqs | ispgroupsqs).distinct()
-    if isps is None or (len(isps) == 1 and isps[0].name == 'Select'):
-        return HttpResponse('您未選擇任何ISPs. 請確認')
     template_name = 'telecom/mail_content_preview.html'
     context = {'model': model, 'task': task, 'isps': isps, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}
     return render(request, template_name, context)
@@ -352,11 +350,7 @@ def prefixlistupdatetask_sendtaskmail(request, pk):
         isps = (ispsqs | ispgroupsqs).distinct()
     template_name = 'telecom/mail_content.html'
     eng_template_name = 'telecom/eng_mail_content.html'
-    if isps is None or (len(isps) == 1 and isps[0].name == 'Select'):
-        return HttpResponse('您未選擇任何ISPs. 請確認')
     for isp in isps:
-        if isp.name == 'Select':
-            continue
         context = {'model': model, 'task': task, 'isp': isp, 'ip_type': ip_type, 'ipv4_contents': ipv4_contents, 'ipv6_contents': ipv6_contents}
         if isp.eng_mail_type:
             mail_content = render_to_string(eng_template_name, context)
