@@ -278,7 +278,7 @@ if USE_GMAIL:
     DEFAULT_FROM_EMAIL = 'TDB <j3ycode@gmail.com>'
     SERVER_EMAIL = 'TDB <j3ycode@gmail.com>'
 else:
-    EMAIL_HOST = '223.26.68.17'
+    EMAIL_HOST = 'mail.adsl.chief.net.tw'
     EMAIL_USE_TLS = False
     EMAIL_PORT = 25
     EMAIL_HOST_USER = ''
