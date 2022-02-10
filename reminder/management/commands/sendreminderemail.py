@@ -44,7 +44,7 @@ class Command(BaseCommand):
             dates = reminder.specified_dates
             seperator = ','
             dates = dates[:-1] if dates[-1:] == seperator else dates
-            date_list = list(map(str.strip, dates.split(';')))
+            date_list = list(map(str.strip, dates.split(seperator)))
             if str(today()) in date_list:
                 self.handle_mail(reminder)
 
@@ -57,10 +57,10 @@ class Command(BaseCommand):
             print("Email:\n")
             print(reminder.email_subject)
             print(reminder.email_content)
-        send_mail(
-            subject=reminder.email_subject,
-            message=reminder.email_content,
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=recipient_list,
-            fail_silently=False,
-        )
+        # send_mail(
+        #     subject=reminder.email_subject,
+        #     message=reminder.email_content,
+        #     from_email=settings.DEFAULT_FROM_EMAIL,
+        #     recipient_list=recipient_list,
+        #     fail_silently=False,
+        # )
