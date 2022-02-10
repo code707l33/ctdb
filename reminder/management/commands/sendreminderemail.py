@@ -57,10 +57,10 @@ class Command(BaseCommand):
             print("Email:\n")
             print(reminder.email_subject)
             print(reminder.email_content)
-        # send_mail(
-        #     subject=reminder.email_subject,
-        #     message=reminder.email_content,
-        #     from_email=settings.DEFAULT_FROM_EMAIL,
-        #     recipient_list=recipient_list,
-        #     fail_silently=False,
-        # )
+        send_mail(
+            subject=reminder.email_subject,
+            message=reminder.email_content,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=recipient_list,
+            fail_silently=False,
+        )
