@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-23 13:55+0800\n"
+"POT-Creation-Date: 2022-02-14 15:15+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -369,7 +369,7 @@ msgstr "搜尋.."
 #: .\archive\templates\archive\announce_list.html:18
 #: .\archive\templates\archive\archive_list.html:18
 #: .\archive\templates\archive\journals_list.html:26
-#: .\core\templates\standard_form.html:56
+#: .\core\templates\standard_form.html:57
 #: .\core\templates\standard_form_with_file.html:65
 #: .\core\templates\standard_nav.html:39 .\core\templates\standard_nav.html:57
 #: .\core\templates\standard_nav.html:75 .\core\templates\standard_nav.html:91
@@ -524,7 +524,7 @@ msgstr "選擇"
 
 #: .\core\templates\no_creater_permission_action_dropdown.html:10
 #: .\core\templates\standard_action_dropdown.html:10
-#: .\core\templates\standard_form.html:59
+#: .\core\templates\standard_form.html:60
 #: .\core\templates\standard_form_with_file.html:68
 #: .\diary\templates\diary\diary_action_dropdown.html:10
 #: .\pilotadmin\templates\pilotadmin\pilotadmin_action_dropdown.html:15
@@ -560,7 +560,13 @@ msgstr "沒有可用的選項"
 msgid ":"
 msgstr ""
 
-#: .\core\templates\standard_form.html:62
+#: .\core\templates\standard_form.html:32
+msgid ""
+"Select <b>multiple</b> items or <b>deselect</b> , must hold <b>Ctrl</b> and "
+"click it."
+msgstr "<b>複選</b>多個項目 或要 <b>取消</b>已選取項目，請<b>按住 Ctrl</b> 後再點選即可。"
+
+#: .\core\templates\standard_form.html:63
 msgid "Save and continue editing"
 msgstr ""
 

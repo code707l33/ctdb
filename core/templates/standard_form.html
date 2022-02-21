@@ -28,7 +28,8 @@
 
         {% else %}
 
-          <label for="{{ field.id_for_label }}">{% if field.field.required %}*{% endif %}{{ field.label }}{% translate ':' %}</label>
+          <label for="{{ field.id_for_label }}">{% if field.field.required %}*{% endif %}{{ field.label }}{% translate ':' %}
+          {% if field.label == 'ISPs'%}{% translate 'Select <b>multiple</b> items or <b>deselect</b> , must hold <b>Ctrl</b> and click it.' %}{% endif %}</label>
           {% if has_error and has_placeholder %}{% render_field field class+='form-control form-check border-danger' %}
           {% elif has_error and not has_placeholder %}{% render_field field class+='form-control form-check border-danger' placeholder=field.label %}
           {% elif not has_error and has_placeholder %}{% render_field field class+='form-control' %}
