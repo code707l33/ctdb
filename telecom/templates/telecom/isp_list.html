@@ -32,6 +32,8 @@
                 <th style="width: 1px">{% translate 'To' %}</th>
                 <th style="width: 1px">{% translate 'CC' %}</th>
                 <th style="width: 1px">{% translate 'BCC' %}</th>
+                <th style="width: 50%;">{% translate 'Upstream Session IP' %}</th>
+                <th style="width: 50%;">{% translate 'Chief Session IP' %}</th>
                 <th style="width: 50%;">{% translate 'English format' %}</th>
               </tr>
             </thead>
@@ -47,9 +49,11 @@
                 <td class="text-nowrap">{{ obj.customer_no }}</td>
                 <td class="text-nowrap">{{ obj.upstream_as }}</td>
                 <td class="text-nowrap">{{ obj.primary_contact }}</td>
-                <td class="text-nowrap">{{ obj.to|linebreaks }}</td>
+                <td class="text-nowrap">{{ obj.to }}</td>
                 <td class="text-nowrap">{{ obj.cc|linebreaks }}</td>
                 <td class="text-nowrap">{{ obj.bcc|linebreaks }}</td>
+                <td class="text-nowrap">{{ obj.upstream_session_ip|linebreaks }}</td>
+                <td class="text-nowrap">{{ obj.chief_session_ip|linebreaks }}</td>
                 <td class="text-nowrap">{{ obj.eng_mail_type }}</td>
               </tr>
               {% empty %}

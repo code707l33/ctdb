@@ -7,18 +7,13 @@ from .models import Isp, IspGroup, PrefixListUpdateTask
 class IspModelForm(forms.ModelForm):
     to = forms.CharField(
         label=_('To'),
-        widget=forms.Textarea(
-            attrs={
-                'placeholder': _(
-                    'Please enter one or more Email separated by ";".\n'
-                    'For example:\n'
-                    '\n'
-                    'example1@chief.com.tw;\n'
-                    'example2@google.com;\n'
-                ),
-                'row': 10
-            }
-        ),
+        # widget=forms.Textarea(
+        #     attrs={
+        #         'placeholder': _(
+        #             'Please enter only one Email address'
+        #         ),
+        #     }
+        # ),
     )
     cc = forms.CharField(
         label=_('CC'),
@@ -51,6 +46,34 @@ class IspModelForm(forms.ModelForm):
             }
         ),
         required=False
+    )
+    upstream_session_ip = forms.CharField(
+        label=_('Upstream Session IP'),
+        widget=forms.Textarea(
+            attrs={
+                'placeholder': _(
+                    'Please enter a prefix-list. For example:\n'
+                    '\n'
+                    '100.100.100.100/24,\n'
+                    '100.100.200.100/22 le 24,\n'
+                ),
+                'rows': 6
+            }
+        )
+    )
+    chief_session_ip = forms.CharField(
+        label=_('Chief Session IP'),
+        widget=forms.Textarea(
+            attrs={
+                'placeholder': _(
+                    'Please enter a prefix-list. For example:\n'
+                    '\n'
+                    '100.100.100.100/24,\n'
+                    '100.100.200.100/22 le 24,\n'
+                ),
+                'rows': 6
+            }
+        )
     )
 
     class Meta:
