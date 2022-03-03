@@ -83,6 +83,7 @@ class PrefixListUpdateTask(models.Model):
     ipv6_prefix_list = models.TextField(verbose_name=_('IPv6-Prefix-list'), validators=[validate_comma_separated_prefix_list_string, ])
     subject_warning = models.CharField(verbose_name=_('Subject warning'), max_length=63, blank=True)
     related_ticket = models.CharField(verbose_name=_('Related ticket'), max_length=63, blank=True)
+    roa = models.CharField(verbose_name='roa', max_length=63, blank=True)
     remark = models.TextField(verbose_name=_('Remark'), blank=True)
     meil_sended_time = models.CharField(verbose_name=_('Mail sended time'), max_length=63, blank=True)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
