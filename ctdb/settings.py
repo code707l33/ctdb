@@ -90,7 +90,8 @@ INSTALLED_APPS += [
     'log.apps.LogConfig',
     'api.apps.ApiConfig',
     'user.apps.UserConfig',
-    'pilotadmin.apps.PilotadminConfig'
+    'pilotadmin.apps.PilotadminConfig',
+    'comment.apps.CommentConfig',
 ]
 
 if DEBUG:
@@ -174,7 +175,8 @@ DB_CONFIGS['MySQL'] = {
 
 DB_CONFIGS['MSSQL'] = {
     'default': {
-        'ENGINE': 'sql_server.pyodbc',
+        # 'ENGINE': 'sql_server.pyodbc',
+        'ENGINE': 'mssql',
         'NAME': 'TDB2',
         'USER': 'jimmy_lin',
         'PASSWORD': DATABASES_MSSQL_PASSWORD,

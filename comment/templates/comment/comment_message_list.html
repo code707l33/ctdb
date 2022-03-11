@@ -1,0 +1,60 @@
+{% extends 'diary/base.html' %}
+{% load static i18n widget_tweaks custom_templatetags %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'css/table_toolbar.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="content">
+  <div class="container-fluid max-w-24u">
+    <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
+      <div class="col">
+        <div id="toolbar" class="d-flex">
+          <input type="text" id="searchInput" class="form-control shadow-sm{% if not supervise_roles %} mr-auto{% endif %}" placeholder={% translate 'Search..' %}>
+          {% name model|attr:'_meta'|get_perm_name:'add' as perm_name %}
+          {% if user|has_perm:perm_name %}
+          <a id="addButton" class="border shadow-sm form-control btn btn-light"
+            href="{{ model.get_create_url }}">{% translate 'Add' %}</a>
+          {% endif %}
+        </div>
+        <div class="table-responsive">
+          <table id="searchTable" class="table table-light table-borderless table-solid">
+            <thead>
+              <tr>
+                <th style="width: 1px;">{% translate 'Action' %}</th>
+                <th style="width: 1px;">{% translate 'Created by' %}</th>
+                <th style="width: 1px;">{% translate 'Message Date' %}</th>
+                <th style="width: 1px;">{% translate 'Message Content' %}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for obj in object_list %}
+              <tr>
+                <td class="text-nowrap">{% include 'comment/comment_action_dropdown.html' %}</td>
+                <td class="text-nowrap">{{ obj.message_created_by }}</td>
+                <td class="text-nowrap">{{ obj.message_date|date:"Y-m-d" }}</td>
+                <td>{{ obj.message_content|safe|linebreaks }}</td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td class='text-center text-secondary' colspan="100%">{% translate 'No entries.' %}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        {% if is_paginated %}
+        {% include 'standard_pagination.html' %}
+        {% endif %}
+        <div id="blankButtom"></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extrajs %}
+<script src="{% static 'js/table_search.js' %}"></script>
+<script src="{% static 'comment/js/comment_list.js' %}"></script>
+{% endblock %}

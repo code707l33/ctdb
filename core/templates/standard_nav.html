@@ -140,6 +140,24 @@
           {% endif %}
         </li>
         <li class="nav-item dropdown">
+          {% if perms.comment.view_comment or perms.comment.add_comment %}
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="true">
+            {% translate 'Comment' %}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% if perms.comment.view_comment %}
+            <a class="dropdown-item" href="{% url 'comment:comment_list' %}">{% translate 'Comment' %} |
+              {% translate 'List' %}</a>
+            {% endif %}
+            {% if perms.reminder.add_reminder %}
+            <a class="dropdown-item" href="{% url 'comment:comment_create' %}">{% translate 'Comment' %} |
+              {% translate 'Add' %}</a>
+            {% endif %}
+          </div>
+          {% endif %}
+        </li>
+        <li class="nav-item dropdown">
           {% if perms.log.view_log %}
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="true">
