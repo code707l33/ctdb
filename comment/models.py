@@ -10,17 +10,14 @@ class Comment(models.Model):
     post_date = models.DateField(verbose_name=_('Date'), default=today)
     post_choice = (('share',_('share')), ('discuss',_('discuss')), ('help',_('help')), ('message',_('message')))
     post_type = models.CharField(
-        verbose_name=_('post_type'),
+        verbose_name=_('Post type'),
         max_length=15, 
         choices=post_choice, 
         default='message'
         )
-    post_title = models.CharField(verbose_name=('Post Title'),max_length=30, null=False, default=' ')
+    post_title = models.TextField(verbose_name=_('Title'), null=False)
     comment = models.TextField(verbose_name=_('Post Comment'), blank=True)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.post_title
 
     class Meta:
         ordering = ['-post_date']
@@ -38,7 +35,7 @@ class Comment(models.Model):
         return reverse('comment:comment_delete', kwargs={'pk': self.pk})
     
     def get_message_url(self):
-        return reverse('comment:comment_message', kwargs={'pk': self.pk})
+        return reverse('comment:comment_message_list', kwargs={'pk': self.pk})
 
 
 class CommentMessage(models.Model):

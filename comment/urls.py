@@ -9,6 +9,6 @@ urlpatterns = [
     path('comments/add/', comment_create, name='comment_create'),
     path('comments/<int:pk>/change/', comment_update, name='comment_update'),
     path('comments/<int:pk>/delete/', comment_delete, name='comment_delete'),
-    path('comments/<int:pk>/message/', comment_message_list, name='comment_message'),
+    path('comments/<int:pk>/comment_message/', comment_message_list, name='comment_message_list'),
 
 ]

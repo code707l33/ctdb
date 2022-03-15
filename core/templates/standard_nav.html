@@ -143,15 +143,15 @@
           {% if perms.comment.view_comment or perms.comment.add_comment %}
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="true">
-            {% translate 'Comment' %}
+            {% translate 'Post Board' %}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             {% if perms.comment.view_comment %}
-            <a class="dropdown-item" href="{% url 'comment:comment_list' %}">{% translate 'Comment' %} |
+            <a class="dropdown-item" href="{% url 'comment:comment_list' %}">{% translate 'Post Board' %} |
               {% translate 'List' %}</a>
             {% endif %}
             {% if perms.reminder.add_reminder %}
-            <a class="dropdown-item" href="{% url 'comment:comment_create' %}">{% translate 'Comment' %} |
+            <a class="dropdown-item" href="{% url 'comment:comment_create' %}">{% translate 'Post Board' %} |
               {% translate 'Add' %}</a>
             {% endif %}
           </div>
