@@ -15,7 +15,7 @@
           {% name model|attr:'_meta'|get_perm_name:'add' as perm_name %}
           {% if user|has_perm:perm_name %}
           <a id="addButton" class="border shadow-sm form-control btn btn-light"
-            href="{{ model.get_create_url }}">{% translate 'Add' %}</a>
+            href="{% url 'comment:comment_message_create' pk=comment_pk %}">{% translate 'Add' %}</a>
           {% endif %}
         </div>
         <div class="table-responsive">
@@ -32,7 +32,7 @@
               {% for obj in object_list %}
               <tr>
                 <td class="text-nowrap">{% include 'comment/comment_action_dropdown.html' %}</td>
-                <td class="text-nowrap">{{ obj.message_created_by }}</td>
+                <td class="text-nowrap">{{ obj.created_by }}</td>
                 <td class="text-nowrap">{{ obj.message_date|date:"Y-m-d" }}</td>
                 <td>{{ obj.message_content|safe|linebreaks }}</td>
               </tr>

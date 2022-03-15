@@ -95,11 +95,12 @@ def comment_delete(request, pk):
 
 
 @login_required
-@permission_required('comment_message.view_comment_message', raise_exception=True, exception=Http404)
+@permission_required('comment.view_commentmessage', raise_exception=True, exception=Http404)
 def comment_message_list(request,pk):
     model_comment = Comment
-    model_message = CommentMessage
-    queryset = model_comment.objects.filter(pk=pk)
+    comment = model_comment.objects.get(pk=pk)
+    model = CommentMessage
+    queryset = model.objects.filter(message_post=pk)
     paginate_by = 5
     template_name = 'comment/comment_message_list.html' # TODO
     page_number = request.GET.get('page', '')
@@ -108,10 +109,35 @@ def comment_message_list(request,pk):
     is_paginated = page_number.lower() != 'all' and page_obj.has_other_pages()
 
     context = {
-        'model': model_message,
+        'model': model, # ERROR : when use CommentMessage, Reverse for 'comment_message_create' with no arguments not found.
+        'comment': comment,
         'page_obj': page_obj,
         'object_list': page_obj if is_paginated else queryset,
+        "comment_pk": pk
     }
 
     return render(request, template_name, context)
 
+
+@login_required
+@permission_required('comment.add_commentmessage', raise_exception=True, exception=Http404)
+def comment_message_create(request,pk):
+    model = CommentMessage
+    message_post = Comment.objects.get(pk=pk)
+    instance = model(created_by=request.user, message_post=message_post)
+    form_class = CommentMessageModelForm
+    success_url = reverse('comment:comment_message_list', kwargs={'pk': pk})
+    form_buttons = ['create', 'save_and_continue_editing']
+    template_name = 'comment/comment_form.html'
+    if request.method == 'POST':
+        form = form_class(data=request.POST, instance=instance)
+        if form.is_valid():
+            instance = form.save()
+            if request.POST.get('save_and_continue_editing'):
+                return redirect(reverse('comment:comment_message_update'))
+            return redirect(success_url)
+        context = {'model': model, 'form': form, 'form_buttons': form_buttons}
+        return render(request, template_name, context)
+    form = form_class()
+    context = {'model': model, 'form': form, 'form_buttons': form_buttons}
+    return render(request, template_name, context)

@@ -18,4 +18,4 @@ class CommentMessageModelForm(forms.ModelForm):
             'message_content': forms.Textarea(attrs={'rows': 4, 'class': 'ckeditor4'})
         }
         model = CommentMessage
-        exclude = ['message_create_by']
+        exclude = ['message_post','created_by']

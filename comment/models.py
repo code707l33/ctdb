@@ -41,20 +41,10 @@ class CommentMessage(models.Model):
     message_date = models.DateField(verbose_name=_('Date'), default=today)
     message_post = models.ForeignKey(to='comment', on_delete=models.CASCADE)
     message_content = models.TextField(verbose_name=_('Message'), blank=True)
-    message_create_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['-message_date']
     
     def __str__(self):
         return self.message_post
-    
-    def get_create_url(self):
-        return reverse('comment_message:comment_message_create')
-
-    def get_update_url(self):
-        return reverse('comment_message:comment_message_update', kwargs={'pk': self.pk})
-
-    def get_delete_url(self):
-        return reverse('comment_message:comment_message_delete', kwargs={'pk': self.pk})
-
