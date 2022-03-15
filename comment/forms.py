@@ -7,7 +7,6 @@ from .models import Comment, CommentMessage
 class CommentModelForm(forms.ModelForm):
     class Meta:
         widgets = {
-            'post_date': forms.DateInput(attrs={'type': 'date'}),
             'comment': forms.Textarea(attrs={'rows': 4, 'class': 'ckeditor4'}),
         }
         model = Comment
@@ -16,7 +15,6 @@ class CommentModelForm(forms.ModelForm):
 class CommentMessageModelForm(forms.ModelForm):
     class Meta:
         widgets = {
-            'message_date': forms.DateInput(attrs={'type': 'date', 'readonly': ''}),
             'message_content': forms.Textarea(attrs={'rows': 4, 'class': 'ckeditor4'})
         }
         model = CommentMessage

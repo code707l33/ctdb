@@ -23,7 +23,6 @@ class Comment(models.Model):
         ordering = ['-post_date']
         verbose_name = _('Comment')
         verbose_name_plural = _('Comments')
-        unique_together = (('post_date', 'created_by'), )
 
     def get_create_url(self):
         return reverse('comment:comment_create')

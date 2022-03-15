@@ -97,8 +97,9 @@ def comment_delete(request, pk):
 @login_required
 @permission_required('comment_message.view_comment_message', raise_exception=True, exception=Http404)
 def comment_message_list(request,pk):
-    model = CommentMessage
-    queryset = model.objects.filter(pk=pk)
+    model_comment = Comment
+    model_message = CommentMessage
+    queryset = model_comment.objects.filter(pk=pk)
     paginate_by = 5
     template_name = 'comment/comment_message_list.html' # TODO
     page_number = request.GET.get('page', '')
@@ -107,7 +108,7 @@ def comment_message_list(request,pk):
     is_paginated = page_number.lower() != 'all' and page_obj.has_other_pages()
 
     context = {
-        'model': model,
+        'model': model_message,
         'page_obj': page_obj,
         'object_list': page_obj if is_paginated else queryset,
     }
