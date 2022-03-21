@@ -46,7 +46,7 @@ def comment_create(request):
         if form.is_valid():
             instance = form.save()
             if request.POST.get('save_and_continue_editing'):
-                return redirect(reverse('comment:comment_update'))
+                return redirect(reverse('comment:comment_update', kwargs={'pk': instance.pk}))
             return redirect(success_url)
         context = {'model': model, 'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
@@ -102,7 +102,7 @@ def comment_message_list(request,pk):
     model = CommentMessage
     queryset = model.objects.filter(message_post=pk)
     paginate_by = 5
-    template_name = 'comment/comment_message_list.html' # TODO
+    template_name = 'comment/comment_message_list.html'
     page_number = request.GET.get('page', '')
     paginator = Paginator(queryset, paginate_by)
     page_obj = paginator.get_page(page_number)

@@ -35,7 +35,7 @@
                 <td class="text-nowrap">{% include 'comment/comment_action_dropdown.html' %}</td>
                 <td class="text-nowrap">{{ obj.created_by }}</td>
                 <td class="text-nowrap">{{ obj.post_date|date:"Y-m-d" }}</td>
-                <td>{{ obj.post_type }}</td>
+                <td>{{ obj.get_post_type_display }}</td>
                 <td>{{ obj.post_title|safe|linebreaks }}</td>
               </tr>
               {% empty %}

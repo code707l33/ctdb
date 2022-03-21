@@ -10,6 +10,10 @@
   <div class="container-fluid max-w-24u">
     <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
       <div class="col">
+      <div id="post_comments">
+          <p style="color: black;font-size: 24px;">{% translate 'Title' %}：{{ comment.post_title|safe }}</p>
+          <p style="color: black;font-size: 18px">{% translate 'Content' %}：{{ comment.comment|safe }}</p>
+        </div>
         <div id="toolbar" class="d-flex">
           <input type="text" id="searchInput" class="form-control shadow-sm{% if not supervise_roles %} mr-auto{% endif %}" placeholder={% translate 'Search..' %}>
           {% name model|attr:'_meta'|get_perm_name:'add' as perm_name %}
