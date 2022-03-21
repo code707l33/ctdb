@@ -25,13 +25,13 @@
                 <th style="width: 1px;">{% translate 'Action' %}</th>
                 <th style="width: 1px;">{% translate 'Created by' %}</th>
                 <th style="width: 1px;">{% translate 'Message Date' %}</th>
-                <th style="width: 1px;">{% translate 'Message Content' %}</th>
+                <th style="width: 80%;">{% translate 'Message Content' %}</th>
               </tr>
             </thead>
             <tbody>
               {% for obj in object_list %}
               <tr>
-                <td class="text-nowrap">{% include 'comment/comment_action_dropdown.html' %}</td>
+                <td class="text-nowrap">{% include 'comment/message_action_dropdown.html' %}</td>
                 <td class="text-nowrap">{{ obj.created_by }}</td>
                 <td class="text-nowrap">{{ obj.message_date|date:"Y-m-d" }}</td>
                 <td>{{ obj.message_content|safe|linebreaks }}</td>

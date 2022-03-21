@@ -70,7 +70,7 @@ def comment_update(request, pk):
         if form.is_valid():
             instance = form.save()
             if request.POST.get('save_and_continue_editing'):
-                return redirect(reverse('diary:diary_update', kwargs={'pk': instance.pk}))
+                return redirect(reverse('comment:comment_update', kwargs={'pk': instance.pk}))
             return redirect(success_url)
         context = {'model': model, 'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
@@ -107,9 +107,10 @@ def comment_message_list(request,pk):
     paginator = Paginator(queryset, paginate_by)
     page_obj = paginator.get_page(page_number)
     is_paginated = page_number.lower() != 'all' and page_obj.has_other_pages()
+    
 
     context = {
-        'model': model, # ERROR : when use CommentMessage, Reverse for 'comment_message_create' with no arguments not found.
+        'model': model,
         'comment': comment,
         'page_obj': page_obj,
         'object_list': page_obj if is_paginated else queryset,
@@ -139,5 +140,44 @@ def comment_message_create(request,pk):
         context = {'model': model, 'form': form, 'form_buttons': form_buttons}
         return render(request, template_name, context)
     form = form_class()
+    context = {'model': model, 'form': form, 'form_buttons': form_buttons}
+    return render(request, template_name, context)
+
+
+@login_required
+@permission_required('comment.delete_commentmessage', raise_exception=True, exception=Http404)
+def comment_message_delete(request, comment_pk, pk):
+    model = CommentMessage
+    queryset = model.objects.all()
+    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
+    success_url = reverse('comment:comment_message_list', kwargs={'pk': comment_pk})
+    template_name = 'comment/comment_confirm_delete.html'
+    if request.method == 'POST':
+        instance.delete()
+        return redirect(success_url)
+    context = {'model': model}
+    return render(request, template_name, context)
+
+
+@login_required
+@permission_required('comment.change_commentmessage', raise_exception=True, exception=Http404)
+def comment_message_update(request, comment_pk, pk):
+    model = CommentMessage
+    queryset = model.objects.all()
+    instance = get_object_or_404(klass=queryset, pk=pk, created_by=request.user)
+    form_class = CommentMessageModelForm
+    success_url = reverse('comment:comment_message_list', kwargs={'pk': comment_pk})
+    form_buttons = ['update', 'save_and_continue_editing']
+    template_name = 'comment/comment_form.html'
+    if request.method == 'POST':
+        form = form_class(data=request.POST, instance=instance)
+        if form.is_valid():
+            instance = form.save()
+            if request.POST.get('save_and_continue_editing'):
+                return redirect(reverse('comment:comment_update', kwargs={'pk': instance.pk}))
+            return redirect(success_url)
+        context = {'model': model, 'form': form, 'form_buttons': form_buttons}
+        return render(request, template_name, context)
+    form = form_class(instance=instance)
     context = {'model': model, 'form': form, 'form_buttons': form_buttons}
     return render(request, template_name, context)
