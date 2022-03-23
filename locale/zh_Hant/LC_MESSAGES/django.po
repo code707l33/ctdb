@@ -751,7 +751,7 @@ msgstr "新增處級佈達"
 #: .\core\templates\standard_nav.html:150
 #: .\core\templates\standard_nav.html:154
 msgid "Post Board"
-msgstr "貼文版"
+msgstr "留言討論版"
 
 #: .\core\templates\standard_nav.html:164
 #: .\core\templates\standard_nav.html:168
