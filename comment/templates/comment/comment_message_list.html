@@ -24,6 +24,8 @@
           <a id="addButton" class="border shadow-sm form-control btn btn-light"
             href="{% url 'comment:comment_message_create' pk=comment_pk %}">{% translate 'Add' %}</a>
           {% endif %}
+          <a id="backButton" class="border shadow-sm btn btn-light"
+            href="{% url 'comment:comment_list' %}">{% translate 'Back to list' %}</a>
         </div>
         <div class="table-responsive">
           <table id="searchTable" class="table table-light table-borderless table-solid">

@@ -613,10 +613,8 @@ msgid "Message Date"
 msgstr "回文日期"
 
 #: .\comment\templates\comment\comment_message_list.html:28
-#, fuzzy
-#| msgid "Content"
 msgid "Message Content"
-msgstr "內容"
+msgstr "回覆訊息內容"
 
 #: .\comment\templates\comment\message_list.html:27
 #, fuzzy
