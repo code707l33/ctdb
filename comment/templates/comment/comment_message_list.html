@@ -10,9 +10,12 @@
   <div class="container-fluid max-w-24u">
     <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
       <div class="col">
-      <div id="post_comments">
-          <p style="color: black;font-size: 24px;">{% translate 'Title' %}：{{ comment.post_title|safe }}</p>
-          <p style="color: black;font-size: 18px">{% translate 'Content' %}：{{ comment.comment|safe }}</p>
+      <div id="post_comments" style="font-size: 32px">
+          <p style="color: black;font-size: 20px;">{% translate 'Created by' %}：{{ comment.created_by }}</p>
+          <p style="color: black;font-size: 20px;">{% translate 'Title' %}：{{ comment.post_title|safe }}</p>
+          <p style="color: black;font-size: 20px;">{% translate 'Date' %}：{{ comment.post_date|date:"Y-m-d" }}</p>
+          <hr>
+          <p style="color: black;">{{ comment.comment|safe }}</p>
         </div>
         <div id="toolbar" class="d-flex">
           <input type="text" id="searchInput" class="form-control shadow-sm{% if not supervise_roles %} mr-auto{% endif %}" placeholder={% translate 'Search..' %}>
@@ -27,8 +30,8 @@
             <thead>
               <tr>
                 <th style="width: 1px;">{% translate 'Action' %}</th>
-                <th style="width: 1px;">{% translate 'Created by' %}</th>
                 <th style="width: 1px;">{% translate 'Message Date' %}</th>
+                <th style="width: 1px;">{% translate 'Created by' %}</th>
                 <th style="width: 80%;">{% translate 'Message Content' %}</th>
               </tr>
             </thead>
@@ -36,8 +39,8 @@
               {% for obj in object_list %}
               <tr>
                 <td class="text-nowrap">{% include 'comment/message_action_dropdown.html' %}</td>
-                <td class="text-nowrap">{{ obj.created_by }}</td>
                 <td class="text-nowrap">{{ obj.message_date|date:"Y-m-d" }}</td>
+                <td class="text-nowrap">{{ obj.created_by }}</td>
                 <td>{{ obj.message_content|safe|linebreaks }}</td>
               </tr>
               {% empty %}

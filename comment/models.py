@@ -16,7 +16,7 @@ class Comment(models.Model):
         default='message'
         )
     post_title = models.TextField(verbose_name=_('Title'), null=False)
-    comment = models.TextField(verbose_name=_('Post Comment'), blank=True)
+    comment = models.TextField(verbose_name=_('Post Comment'), blank=False)
     created_by = models.ForeignKey(verbose_name=_('Created by'), to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta:

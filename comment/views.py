@@ -17,7 +17,7 @@ from .models import Comment, CommentMessage
 def comment_list(request):
     model = Comment
     queryset = model.objects.all()
-    paginate_by = 5
+    paginate_by = 20
     template_name = 'comment/comment_list.html'
     page_number = request.GET.get('page', '')
     paginator = Paginator(queryset, paginate_by)
