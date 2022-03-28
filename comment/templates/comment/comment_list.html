@@ -10,6 +10,12 @@
   <div class="container-fluid max-w-24u">
     <div class="row pt-navbar pb-footer-foot justify-content-center align-items-center min-vh-100">
       <div class="col">
+      <div id="notice" style="color: blue; font-size: 24px;">
+        <p>貼心提醒：</p>
+        <p>技術留言討論區，歡迎大家就技術面議題上:發問、提供答案、案例分享、溫馨技術小提醒...等等</p>
+        <p>供大家暢所欲言的園地，嚴禁謾罵及人身攻擊之類的言論。</p>
+        <hr>
+      </div>
         <div id="toolbar" class="d-flex">
           <input type="text" id="searchInput" class="form-control shadow-sm{% if not supervise_roles %} mr-auto{% endif %}" placeholder={% translate 'Search..' %}>
           {% name model|attr:'_meta'|get_perm_name:'add' as perm_name %}
