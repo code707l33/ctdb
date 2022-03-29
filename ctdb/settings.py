@@ -175,8 +175,8 @@ DB_CONFIGS['MySQL'] = {
 
 DB_CONFIGS['MSSQL'] = {
     'default': {
-        # 'ENGINE': 'sql_server.pyodbc',
-        'ENGINE': 'mssql',
+        'ENGINE': 'sql_server.pyodbc',
+        # 'ENGINE': 'mssql',
         'NAME': 'TDB2',
         'USER': 'jimmy_lin',
         'PASSWORD': DATABASES_MSSQL_PASSWORD,
